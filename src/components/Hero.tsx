@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center py-12 px-4 relative">
+    <section className="min-h-[90vh] flex items-center justify-center py-12 px-4 relative">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute w-64 h-64 rounded-full bg-ayush-gray/5 blur-3xl -top-32 -left-32"></div>
         <div className="absolute w-64 h-64 rounded-full bg-[#00ADB5]/5 blur-3xl top-1/2 right-0"></div>
