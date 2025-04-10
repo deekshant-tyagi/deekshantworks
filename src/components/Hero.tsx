@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { GitHub, Linkedin, Instagram, Twitter, Discord } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, MessagesSquare } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
           style={{ animationDelay: '1.2s' }}
         >
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <GitHub className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+            <Github className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <Linkedin className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
             <Twitter className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
           <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <Discord className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+            <MessagesSquare className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
         </div>
         

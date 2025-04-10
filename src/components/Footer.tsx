@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GitHub, Linkedin, Instagram, Twitter, Discord } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, MessagesSquare } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           
           <div className="flex space-x-6">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <GitHub className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
+              <Github className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
               <Linkedin className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
               <Twitter className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <Discord className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
+              <MessagesSquare className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
           </div>
         </div>

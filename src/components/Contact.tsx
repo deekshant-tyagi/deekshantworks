@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import { GitHub, Linkedin, Instagram, Twitter, Discord, Mail } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, MessagesSquare, Mail } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
           
           <div className="flex space-x-6 mb-16">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <GitHub className="w-8 h-8 hover:text-ayush-white text-ayush-gray transition-colors" />
+              <Github className="w-8 h-8 hover:text-ayush-white text-ayush-gray transition-colors" />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
               <Linkedin className="w-8 h-8 hover:text-ayush-white text-ayush-gray transition-colors" />
@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
               <Twitter className="w-8 h-8 hover:text-ayush-white text-ayush-gray transition-colors" />
             </a>
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <Discord className="w-8 h-8 hover:text-ayush-white text-ayush-gray transition-colors" />
+              <MessagesSquare className="w-8 h-8 hover:text-ayush-white text-ayush-gray transition-colors" />
             </a>
           </div>
           
