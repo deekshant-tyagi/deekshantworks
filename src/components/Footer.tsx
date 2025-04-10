@@ -1,11 +1,12 @@
 
 import React from 'react';
+import { GitHub, Linkedin, Instagram, Twitter, Discord } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="py-8 border-t border-ayush-gray/20">
+    <footer className="py-8 border-t border-ayush-gray/20 bg-ayush-black">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
@@ -13,17 +14,20 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="flex space-x-6">
-            <a href="#" className="text-sm text-ayush-gray hover:text-ayush-white transition-colors cursor-hover nav-item">
-              Instagram
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+              <GitHub className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
-            <a href="#" className="text-sm text-ayush-gray hover:text-ayush-white transition-colors cursor-hover nav-item">
-              Twitter
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+              <Linkedin className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
-            <a href="#" className="text-sm text-ayush-gray hover:text-ayush-white transition-colors cursor-hover nav-item">
-              LinkedIn
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+              <Instagram className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
-            <a href="#" className="text-sm text-ayush-gray hover:text-ayush-white transition-colors cursor-hover nav-item">
-              Dribbble
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+              <Twitter className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
+            </a>
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+              <Discord className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
             </a>
           </div>
         </div>

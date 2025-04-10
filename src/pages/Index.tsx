@@ -4,7 +4,9 @@ import Cursor from '@/components/Cursor';
 import LoadingScreen from '@/components/LoadingScreen';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import Projects from '@/components/Projects';
+import ToolsSection from '@/components/ToolsSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -45,7 +47,9 @@ const Index = () => {
         <Navbar />
         <main>
           <Hero />
+          <About />
           <Projects />
+          <ToolsSection />
           <Contact />
         </main>
         <Footer />
