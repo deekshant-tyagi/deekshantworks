@@ -27,28 +27,40 @@ export function useCursor() {
     // Improved hover detection
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
+      const hoverElements = [
+        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'
+      ];
+      
+      const isHoverable = 
+        hoverElements.includes(target.tagName) || 
         target.classList.contains('cursor-hover') ||
-        target.closest('.project-item') ||
-        target.closest('a') ||
-        target.closest('button')
-      ) {
+        target.closest('.project-item') || 
+        target.closest('a') || 
+        target.closest('button') ||
+        target.closest('[role="button"]') ||
+        target.closest('.cursor-hover');
+      
+      if (isHoverable) {
         setIsHovering(true);
       }
     };
 
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
+      const hoverElements = [
+        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'
+      ];
+      
+      const isHoverable = 
+        hoverElements.includes(target.tagName) || 
         target.classList.contains('cursor-hover') ||
-        target.closest('.project-item') ||
-        target.closest('a') ||
-        target.closest('button')
-      ) {
+        target.closest('.project-item') || 
+        target.closest('a') || 
+        target.closest('button') ||
+        target.closest('[role="button"]') ||
+        target.closest('.cursor-hover');
+      
+      if (isHoverable) {
         setIsHovering(false);
       }
     };
@@ -56,15 +68,15 @@ export function useCursor() {
     document.addEventListener('mousemove', updatePosition);
     document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseover', handleMouseOver);
-    document.addEventListener('mouseout', handleMouseOut);
+    document.addEventListener('mouseover', handleMouseOver, true);
+    document.addEventListener('mouseout', handleMouseOut, true);
 
     return () => {
       document.removeEventListener('mousemove', updatePosition);
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseover', handleMouseOver);
-      document.removeEventListener('mouseout', handleMouseOut);
+      document.removeEventListener('mouseover', handleMouseOver, true);
+      document.removeEventListener('mouseout', handleMouseOut, true);
     };
   }, []);
 

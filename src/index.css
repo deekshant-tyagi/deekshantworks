@@ -71,19 +71,21 @@
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
-    box-shadow: 0 0 15px rgba(0, 173, 181, 0.7);
+    box-shadow: 0 0 20px rgba(0, 173, 181, 0.9);
+    mix-blend-mode: screen;
   }
 
   .cursor-outline {
     width: 35px;
     height: 35px;
-    border: 1.5px solid rgba(0, 173, 181, 0.6);
+    border: 1.5px solid rgba(0, 173, 181, 0.7);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: width 0.4s, height 0.4s, border-color 0.4s, background-color 0.4s;
+    backdrop-filter: blur(1px);
   }
 
   .cursor-magnetic {
@@ -96,6 +98,7 @@
     transform: translate(-50%, -50%);
     background-color: rgba(0, 173, 181, 0.05);
     opacity: 0.6;
+    backdrop-filter: blur(2px);
   }
 
   .cursor-dot.active {
@@ -107,8 +110,8 @@
   .cursor-outline.active {
     width: 60px;
     height: 60px;
-    background-color: rgba(0, 173, 181, 0.15);
-    border-color: rgba(0, 173, 181, 0.7);
+    background-color: rgba(0, 173, 181, 0.2);
+    border-color: rgba(0, 173, 181, 0.9);
   }
 
   .cursor-dot.clicking {
@@ -121,6 +124,7 @@
     width: 45px;
     height: 45px;
     border-color: rgba(0, 173, 181, 1);
+    transform: translate(-50%, -50%) scale(0.9);
   }
 
   /* Navigation Styles */
@@ -174,8 +178,8 @@
     }
   }
   
-  /* Curly underline */
-  .curly-underline {
+  /* Wavy underline */
+  .wavy-underline {
     position: relative;
     display: inline-block;
     white-space: nowrap;
@@ -183,24 +187,24 @@
     font-weight: 400;
   }
   
-  .curly-underline::after {
+  .wavy-underline::after {
     content: "";
     position: absolute;
     bottom: -5px;
     left: 0;
-    height: 3px;
     width: 100%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,5 Q25,0 50,5 T100,5' fill='none' stroke='%2300ADB5' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0;
-    background-size: 20px 10px;
-    animation: curlyUnderline 3s linear infinite;
+    height: 4px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4' preserveAspectRatio='none'%3E%3Cpath d='M0,3.5 C5,0.5 5,3.5 10,0.5 C15,3.5 15,0.5 20,3.5' stroke='%2300ADB5' stroke-width='2' fill='none'/%3E%3C/svg%3E") repeat-x 0 0;
+    background-size: 20px 4px;
+    animation: waveMove 2s linear infinite;
   }
   
-  @keyframes curlyUnderline {
+  @keyframes waveMove {
     0% {
       background-position-x: 0;
     }
     100% {
-      background-position-x: 100px;
+      background-position-x: 20px;
     }
   }
   
@@ -239,6 +243,11 @@
   .animate-slide-up {
     animation: slideUp 0.8s ease-out forwards;
   }
+  
+  /* Mobile menu slide from right */
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
 
   @keyframes fadeIn {
     0% {
@@ -259,9 +268,28 @@
       transform: translateY(0);
     }
   }
+  
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 /* Github contribution grid */
 .grid-cols-52 {
   grid-template-columns: repeat(52, minmax(0, 1fr));
+}
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+  
+  .cursor-dot, .cursor-outline, .cursor-magnetic {
+    display: none;
+  }
 }

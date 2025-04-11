@@ -11,46 +11,56 @@ const Cursor: React.FC = () => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
+    if (isMobile) return;
+
     const smoothMove = (element: HTMLElement | null, x: number, y: number, lagFactor: number) => {
       if (!element) return;
       
-      const rect = element.getBoundingClientRect();
-      const targetX = x;
-      const targetY = y;
-      
-      const dx = targetX - (rect.left + rect.width / 2);
-      const dy = targetY - (rect.top + rect.height / 2);
-      
-      const newX = (rect.left + rect.width / 2) + dx / lagFactor;
-      const newY = (rect.top + rect.height / 2) + dy / lagFactor;
-      
-      element.style.transform = `translate(${newX}px, ${newY}px)`;
+      element.style.transform = `translate(${x}px, ${y}px)`;
     };
 
-    let animationFrameId: number;
-    
     const animateCursor = () => {
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
+        smoothMove(dotRef.current, position.x, position.y, 1);
       }
       
       if (outlineRef.current) {
-        smoothMove(outlineRef.current, position.x, position.y, 5);
+        const rect = outlineRef.current.getBoundingClientRect();
+        const targetX = position.x;
+        const targetY = position.y;
+        
+        const dx = targetX - (rect.left + rect.width / 2);
+        const dy = targetY - (rect.top + rect.height / 2);
+        
+        const newX = (rect.left + rect.width / 2) + dx / 5;
+        const newY = (rect.top + rect.height / 2) + dy / 5;
+        
+        smoothMove(outlineRef.current, newX, newY, 5);
       }
       
       if (magneticRef.current) {
-        smoothMove(magneticRef.current, position.x, position.y, 8);
+        const rect = magneticRef.current.getBoundingClientRect();
+        const targetX = position.x;
+        const targetY = position.y;
+        
+        const dx = targetX - (rect.left + rect.width / 2);
+        const dy = targetY - (rect.top + rect.height / 2);
+        
+        const newX = (rect.left + rect.width / 2) + dx / 8;
+        const newY = (rect.top + rect.height / 2) + dy / 8;
+        
+        smoothMove(magneticRef.current, newX, newY, 8);
       }
       
-      animationFrameId = requestAnimationFrame(animateCursor);
+      requestAnimationFrame(animateCursor);
     };
     
-    animationFrameId = requestAnimationFrame(animateCursor);
+    const requestId = requestAnimationFrame(animateCursor);
     
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(requestId);
     };
-  }, [position]);
+  }, [position, isMobile]);
 
   if (isMobile) return null;
 
