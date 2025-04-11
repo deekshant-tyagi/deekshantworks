@@ -6,7 +6,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const Cursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
-  const { position, isHovering } = useCursor();
+  const magneticRef = useRef<HTMLDivElement>(null);
+  const { position, isHovering, isClicking } = useCursor();
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -37,6 +38,10 @@ const Cursor: React.FC = () => {
         smoothMove(outlineRef.current, position.x, position.y, 5);
       }
       
+      if (magneticRef.current) {
+        smoothMove(magneticRef.current, position.x, position.y, 8);
+      }
+      
       animationFrameId = requestAnimationFrame(animateCursor);
     };
     
@@ -53,11 +58,15 @@ const Cursor: React.FC = () => {
     <>
       <div 
         ref={dotRef} 
-        className={`cursor-dot ${isHovering ? 'active' : ''}`} 
+        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''}`}
       />
       <div 
         ref={outlineRef} 
-        className={`cursor-outline ${isHovering ? 'active' : ''}`} 
+        className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''}`}
+      />
+      <div 
+        ref={magneticRef}
+        className="cursor-magnetic"
       />
     </>
   );

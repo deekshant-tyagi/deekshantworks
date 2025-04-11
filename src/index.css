@@ -60,6 +60,7 @@
 }
 
 @layer components {
+  /* Enhanced Cursor Styles */
   .cursor-dot {
     width: 5px;
     height: 5px;
@@ -69,7 +70,8 @@
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.5);
   }
 
   .cursor-outline {
@@ -81,33 +83,60 @@
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: width 0.4s, height 0.4s, border-color 0.4s;
+    transition: width 0.4s, height 0.4s, border-color 0.4s, background-color 0.4s;
+  }
+
+  .cursor-magnetic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 173, 181, 0.03);
+    opacity: 0.5;
   }
 
   .cursor-dot.active {
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     background-color: transparent;
   }
 
   .cursor-outline.active {
     width: 50px;
     height: 50px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 173, 181, 0.1);
+    border-color: rgba(0, 173, 181, 0.5);
   }
 
+  .cursor-dot.clicking {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 173, 181, 0.8);
+  }
+
+  .cursor-outline.clicking {
+    width: 40px;
+    height: 40px;
+    border-color: rgba(0, 173, 181, 0.8);
+  }
+
+  /* Navigation Styles */
   .nav-item {
     @apply relative cursor-pointer overflow-hidden;
   }
 
   .nav-item::after {
-    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-ayush-white content-[''] transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-[#00ADB5] content-[''] transition-all duration-300;
   }
 
   .nav-item:hover::after {
     @apply w-full;
   }
 
+  /* Project Item Styles */
   .project-item {
     @apply relative overflow-hidden transition-all duration-500;
   }
@@ -128,6 +157,7 @@
     @apply opacity-100;
   }
 
+  /* Text Animation Styles */
   .animated-text span {
     @apply inline-block opacity-0;
     animation: textFadeIn 0.3s ease forwards;

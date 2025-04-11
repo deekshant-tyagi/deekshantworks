@@ -9,6 +9,7 @@ interface CursorPosition {
 export function useCursor() {
   const [position, setPosition] = useState<CursorPosition>({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
     const updatePosition = (e: MouseEvent) => {
@@ -17,8 +18,12 @@ export function useCursor() {
 
     document.addEventListener('mousemove', updatePosition);
 
-    document.addEventListener('mousedown', () => setIsHovering(true));
-    document.addEventListener('mouseup', () => setIsHovering(false));
+    document.addEventListener('mousedown', () => {
+      setIsClicking(true);
+      setTimeout(() => setIsClicking(false), 150);
+    });
+    
+    document.addEventListener('mouseup', () => setIsClicking(false));
 
     // Set up event delegation for handling hover states
     document.addEventListener('mouseover', (e) => {
@@ -27,7 +32,9 @@ export function useCursor() {
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         target.classList.contains('cursor-hover') ||
-        target.closest('.project-item')
+        target.closest('.project-item') ||
+        target.closest('a') ||
+        target.closest('button')
       ) {
         setIsHovering(true);
       }
@@ -39,7 +46,9 @@ export function useCursor() {
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         target.classList.contains('cursor-hover') ||
-        target.closest('.project-item')
+        target.closest('.project-item') ||
+        target.closest('a') ||
+        target.closest('button')
       ) {
         setIsHovering(false);
       }
@@ -47,12 +56,12 @@ export function useCursor() {
 
     return () => {
       document.removeEventListener('mousemove', updatePosition);
-      document.removeEventListener('mousedown', () => setIsHovering(true));
-      document.removeEventListener('mouseup', () => setIsHovering(false));
+      document.removeEventListener('mousedown', () => setIsClicking(true));
+      document.removeEventListener('mouseup', () => setIsClicking(false));
       document.removeEventListener('mouseover', () => {});
       document.removeEventListener('mouseout', () => {});
     };
   }, []);
 
-  return { position, isHovering };
+  return { position, isHovering, isClicking };
 }

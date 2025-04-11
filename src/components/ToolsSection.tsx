@@ -21,7 +21,10 @@ const ToolsSection: React.FC = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
+          if (sectionRef.current) {
+            sectionRef.current.classList.remove('opacity-0');
+            sectionRef.current.classList.add('opacity-100');
+          }
         }
       });
     }, observerOptions);
@@ -75,7 +78,7 @@ const ToolsSection: React.FC = () => {
 
   return (
     <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-ayush-black to-gray-900 overflow-hidden" ref={sectionRef}>
-      <div className="container mx-auto px-4 md:px-8 opacity-0">
+      <div className="container mx-auto px-4 md:px-8 opacity-0 transition-opacity duration-700" ref={sectionRef}>
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-light mb-4">Tools that I have <span className="curly-underline">used</span></h2>
           <div className="mb-2 w-64">

@@ -15,7 +15,10 @@ const Contact: React.FC = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
+          if (sectionRef.current) {
+            sectionRef.current.classList.remove('opacity-0');
+            sectionRef.current.classList.add('opacity-100');
+          }
         }
       });
     }, observerOptions);
@@ -29,7 +32,7 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-ayush-black" ref={sectionRef}>
-      <div className="container mx-auto px-4 md:px-8 opacity-0">
+      <div className="container mx-auto px-4 md:px-8 opacity-0 transition-opacity duration-700" ref={sectionRef}>
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>

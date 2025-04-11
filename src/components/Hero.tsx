@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-[90vh] flex items-center justify-center py-12 px-4 relative">
+    <section className="min-h-screen flex items-center justify-center py-12 px-4 relative">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute w-64 h-64 rounded-full bg-ayush-gray/5 blur-3xl -top-32 -left-32"></div>
         <div className="absolute w-80 h-80 rounded-full bg-[#00ADB5]/10 blur-3xl top-1/2 right-0"></div>
@@ -75,24 +75,6 @@ const Hero: React.FC = () => {
           <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <MessagesSquare className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
-        </div>
-        
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="24" 
-            height="24" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            className="text-ayush-gray"
-          >
-            <path d="M12 5v14" />
-            <path d="m19 12-7 7-7-7" />
-          </svg>
         </div>
       </div>
     </section>
