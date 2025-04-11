@@ -62,22 +62,22 @@
 @layer components {
   /* Enhanced Cursor Styles */
   .cursor-dot {
-    width: 5px;
-    height: 5px;
-    background-color: white;
+    width: 6px;
+    height: 6px;
+    background-color: #00ADB5;
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
-    box-shadow: 0 0 10px rgba(0, 173, 181, 0.5);
+    box-shadow: 0 0 15px rgba(0, 173, 181, 0.7);
   }
 
   .cursor-outline {
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 35px;
+    height: 35px;
+    border: 1.5px solid rgba(0, 173, 181, 0.6);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
@@ -87,15 +87,15 @@
   }
 
   .cursor-magnetic {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9997;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 173, 181, 0.03);
-    opacity: 0.5;
+    background-color: rgba(0, 173, 181, 0.05);
+    opacity: 0.6;
   }
 
   .cursor-dot.active {
@@ -105,34 +105,34 @@
   }
 
   .cursor-outline.active {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 173, 181, 0.1);
-    border-color: rgba(0, 173, 181, 0.5);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 173, 181, 0.15);
+    border-color: rgba(0, 173, 181, 0.7);
   }
 
   .cursor-dot.clicking {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(0, 173, 181, 0.8);
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 173, 181, 1);
   }
 
   .cursor-outline.clicking {
-    width: 40px;
-    height: 40px;
-    border-color: rgba(0, 173, 181, 0.8);
+    width: 45px;
+    height: 45px;
+    border-color: rgba(0, 173, 181, 1);
   }
 
   /* Navigation Styles */
-  .nav-item {
+  .nav-link {
     @apply relative cursor-pointer overflow-hidden;
   }
 
-  .nav-item::after {
+  .nav-link::after {
     @apply absolute bottom-0 left-0 w-0 h-[1px] bg-[#00ADB5] content-[''] transition-all duration-300;
   }
 
-  .nav-item:hover::after {
+  .nav-link:hover::after {
     @apply w-full;
   }
 

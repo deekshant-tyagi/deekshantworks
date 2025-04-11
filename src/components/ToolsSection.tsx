@@ -10,8 +10,11 @@ interface Tool {
 const ToolsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [contributionData] = useState(generateRandomContributions());
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
+    console.log("ToolsSection mounted");
+    
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -21,18 +24,22 @@ const ToolsSection: React.FC = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (sectionRef.current) {
-            sectionRef.current.classList.remove('opacity-0');
-            sectionRef.current.classList.add('opacity-100');
-          }
+          console.log("ToolsSection is now visible");
+          setIsVisible(true);
         }
       });
     }, observerOptions);
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+      console.log("Observer attached to ToolsSection");
+    }
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+        console.log("Observer detached from ToolsSection");
+      }
     };
   }, []);
 
@@ -77,8 +84,8 @@ const ToolsSection: React.FC = () => {
   }
 
   return (
-    <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-ayush-black to-gray-900 overflow-hidden" ref={sectionRef}>
-      <div className="container mx-auto px-4 md:px-8 opacity-0 transition-opacity duration-700" ref={sectionRef}>
+    <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-ayush-black to-gray-900 overflow-hidden">
+      <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-light mb-4">Tools that I have <span className="curly-underline">used</span></h2>
           <div className="mb-2 w-64">

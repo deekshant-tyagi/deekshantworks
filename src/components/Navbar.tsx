@@ -36,9 +36,10 @@ const Navbar: React.FC = () => {
             </button>
           ) : (
             <ul className="flex space-x-8">
-              <li><a href="#work" className="nav-item text-white hover:text-[#00ADB5] transition-colors duration-300">Work</a></li>
-              <li><a href="#about" className="nav-item text-white hover:text-[#00ADB5] transition-colors duration-300">About</a></li>
-              <li><a href="#contact" className="nav-item text-white hover:text-[#00ADB5] transition-colors duration-300">Contact</a></li>
+              <li><a href="#work" className="nav-link text-white hover:text-[#00ADB5] transition-colors duration-300">Work</a></li>
+              <li><a href="#about" className="nav-link text-white hover:text-[#00ADB5] transition-colors duration-300">About</a></li>
+              <li><a href="#tools" className="nav-link text-white hover:text-[#00ADB5] transition-colors duration-300">Tools</a></li>
+              <li><a href="#contact" className="nav-link text-white hover:text-[#00ADB5] transition-colors duration-300">Contact</a></li>
             </ul>
           )}
         </div>
@@ -58,7 +59,7 @@ const Navbar: React.FC = () => {
               <li>
                 <a 
                   href="#work" 
-                  className="nav-item text-white hover:text-[#00ADB5] transition-colors duration-300"
+                  className="text-white hover:text-[#00ADB5] transition-colors duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Work
@@ -67,7 +68,7 @@ const Navbar: React.FC = () => {
               <li>
                 <a 
                   href="#about" 
-                  className="nav-item text-white hover:text-[#00ADB5] transition-colors duration-300"
+                  className="text-white hover:text-[#00ADB5] transition-colors duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About
@@ -75,8 +76,17 @@ const Navbar: React.FC = () => {
               </li>
               <li>
                 <a 
+                  href="#tools" 
+                  className="text-white hover:text-[#00ADB5] transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Tools
+                </a>
+              </li>
+              <li>
+                <a 
                   href="#contact" 
-                  className="nav-item text-white hover:text-[#00ADB5] transition-colors duration-300"
+                  className="text-white hover:text-[#00ADB5] transition-colors duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact

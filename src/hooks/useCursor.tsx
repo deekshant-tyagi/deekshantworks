@@ -16,17 +16,16 @@ export function useCursor() {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
-    document.addEventListener('mousemove', updatePosition);
-
-    document.addEventListener('mousedown', () => {
+    const handleMouseDown = () => {
       setIsClicking(true);
-      setTimeout(() => setIsClicking(false), 150);
-    });
-    
-    document.addEventListener('mouseup', () => setIsClicking(false));
+    };
 
-    // Set up event delegation for handling hover states
-    document.addEventListener('mouseover', (e) => {
+    const handleMouseUp = () => {
+      setIsClicking(false);
+    };
+
+    // Improved hover detection
+    const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
         target.tagName === 'A' ||
@@ -38,9 +37,9 @@ export function useCursor() {
       ) {
         setIsHovering(true);
       }
-    });
+    };
 
-    document.addEventListener('mouseout', (e) => {
+    const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
         target.tagName === 'A' ||
@@ -52,14 +51,20 @@ export function useCursor() {
       ) {
         setIsHovering(false);
       }
-    });
+    };
+
+    document.addEventListener('mousemove', updatePosition);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseout', handleMouseOut);
 
     return () => {
       document.removeEventListener('mousemove', updatePosition);
-      document.removeEventListener('mousedown', () => setIsClicking(true));
-      document.removeEventListener('mouseup', () => setIsClicking(false));
-      document.removeEventListener('mouseover', () => {});
-      document.removeEventListener('mouseout', () => {});
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
     };
   }, []);
 

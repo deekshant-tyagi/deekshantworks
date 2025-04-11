@@ -1,11 +1,14 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Github, Linkedin, Instagram, Twitter, MessagesSquare, Mail, ArrowRight } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
+    console.log("Contact section mounted");
+    
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -15,24 +18,28 @@ const Contact: React.FC = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (sectionRef.current) {
-            sectionRef.current.classList.remove('opacity-0');
-            sectionRef.current.classList.add('opacity-100');
-          }
+          console.log("Contact section is now visible");
+          setIsVisible(true);
         }
       });
     }, observerOptions);
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+      console.log("Observer attached to Contact section");
+    }
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+        console.log("Observer detached from Contact section");
+      }
     };
   }, []);
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-ayush-black" ref={sectionRef}>
-      <div className="container mx-auto px-4 md:px-8 opacity-0 transition-opacity duration-700" ref={sectionRef}>
+    <section id="contact" className="py-16 md:py-24 bg-ayush-black">
+      <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -115,7 +122,7 @@ const Contact: React.FC = () => {
                 </div>
                 <button 
                   type="button" 
-                  className="w-full bg-[#00ADB5] hover:bg-[#00ADB5]/80 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00ADB5]/50"
+                  className="w-full bg-[#00ADB5] hover:bg-[#00ADB5]/80 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00ADB5]/50 cursor-hover"
                 >
                   Send Message
                 </button>
