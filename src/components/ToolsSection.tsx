@@ -22,13 +22,6 @@ const ToolsSection: React.FC = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
-          
-          // Adding animation classes for the tools
-          const rowOne = document.getElementById('skills-row-one');
-          const rowTwo = document.getElementById('skills-row-two');
-          
-          if (rowOne) rowOne.classList.add('marquee-right');
-          if (rowTwo) rowTwo.classList.add('marquee-left');
         }
       });
     }, observerOptions);
@@ -93,7 +86,7 @@ const ToolsSection: React.FC = () => {
           
           {/* First row of scrolling tools */}
           <div className="overflow-hidden py-8 mb-4">
-            <div id="skills-row-one" className="flex space-x-4 w-max whitespace-nowrap">
+            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-right">
               {[...tools, ...tools].map((tool, index) => (
                 <div 
                   key={`${tool.name}-${index}`} 
@@ -108,7 +101,7 @@ const ToolsSection: React.FC = () => {
           
           {/* Second row of scrolling tools */}
           <div className="overflow-hidden py-8 mb-12">
-            <div id="skills-row-two" className="flex space-x-4 w-max whitespace-nowrap">
+            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-left">
               {[...tools2, ...tools2].map((tool, index) => (
                 <div 
                   key={`${tool.name}-${index}`} 

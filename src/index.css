@@ -117,7 +117,7 @@
   }
 
   .project-item:hover img {
-    @apply scale-105;
+    @apply scale-105 blur-sm;
   }
 
   .project-info {
@@ -130,7 +130,7 @@
 
   .animated-text span {
     @apply inline-block opacity-0;
-    animation: textFadeIn 0.5s ease forwards;
+    animation: textFadeIn 0.3s ease forwards;
   }
 
   @keyframes textFadeIn {
@@ -149,7 +149,7 @@
     position: relative;
     display: inline-block;
     white-space: nowrap;
-    color: var(--curly-color);
+    color: #00ADB5;
     font-weight: 400;
   }
   
@@ -175,11 +175,11 @@
   }
   
   /* Marquee animations for skills */
-  .marquee-right {
+  .animate-marquee-right {
     animation: marqueeRight 30s linear infinite;
   }
   
-  .marquee-left {
+  .animate-marquee-left {
     animation: marqueeLeft 30s linear infinite;
   }
   

@@ -12,13 +12,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
     const timer = setTimeout(() => {
       if (progress < 100) {
         setProgress(prevProgress => {
-          const nextProgress = prevProgress + 4; // Increased from 1 to 4 for faster loading
+          const nextProgress = prevProgress + 5; // Increased to 5 for faster loading
           return nextProgress > 100 ? 100 : nextProgress;
         });
       } else {
         onLoadingComplete();
       }
-    }, 12); // Decreased from 30 to 12 for faster loading (approx 0.5-1 second)
+    }, 10); // Decreased to 10ms for faster loading (approx 0.5 second total)
 
     return () => clearTimeout(timer);
   }, [progress, onLoadingComplete]);
@@ -29,7 +29,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         <h1 className="text-3xl font-light mb-8 animate-pulse">AYUSHWORKS</h1>
         <div className="w-full h-[1px] bg-ayush-gray/30 relative mb-2">
           <div 
-            className="absolute top-0 left-0 h-full bg-ayush-white transition-all duration-300 ease-out"
+            className="absolute top-0 left-0 h-full bg-ayush-white transition-all duration-200 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
