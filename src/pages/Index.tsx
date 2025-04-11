@@ -16,9 +16,10 @@ const Index = () => {
 
   const handleLoadingComplete = () => {
     setContentVisible(true);
+    // Reduced loading animation time to 0.5-1 second
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 800); // Shortened to 800ms for faster loading
   };
 
   useEffect(() => {
@@ -36,6 +37,9 @@ const Index = () => {
     };
 
     preloadImages();
+    
+    // Trigger loading complete quickly
+    setTimeout(handleLoadingComplete, 700);
   }, []);
 
   return (

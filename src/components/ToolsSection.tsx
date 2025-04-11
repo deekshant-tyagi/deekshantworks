@@ -9,8 +9,6 @@ interface Tool {
 
 const ToolsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const skillsRowOneRef = useRef<HTMLDivElement>(null);
-  const skillsRowTwoRef = useRef<HTMLDivElement>(null);
   const [contributionData] = useState(generateRandomContributions());
   
   useEffect(() => {
@@ -24,26 +22,18 @@ const ToolsSection: React.FC = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
+          
+          // Adding animation classes for the tools
+          const rowOne = document.getElementById('skills-row-one');
+          const rowTwo = document.getElementById('skills-row-two');
+          
+          if (rowOne) rowOne.classList.add('marquee-right');
+          if (rowTwo) rowTwo.classList.add('marquee-left');
         }
       });
     }, observerOptions);
 
     if (sectionRef.current) observer.observe(sectionRef.current);
-
-    // Horizontal scrolling animation for skills
-    const animateSkills = () => {
-      if (skillsRowOneRef.current) {
-        skillsRowOneRef.current.style.transform = 'translateX(0)';
-        skillsRowOneRef.current.classList.add('marquee-right');
-      }
-      
-      if (skillsRowTwoRef.current) {
-        skillsRowTwoRef.current.style.transform = 'translateX(0)';
-        skillsRowTwoRef.current.classList.add('marquee-left');
-      }
-    };
-    
-    setTimeout(animateSkills, 500);
 
     return () => {
       if (sectionRef.current) observer.unobserve(sectionRef.current);
@@ -91,10 +81,10 @@ const ToolsSection: React.FC = () => {
   }
 
   return (
-    <section id="tools" className="py-16 md:py-24 bg-ayush-black overflow-hidden" ref={sectionRef}>
+    <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-ayush-black to-gray-900 overflow-hidden" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-8 opacity-0">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-light mb-4">Tools that I have used</h2>
+          <h2 className="text-3xl font-light mb-4">Tools that I have <span className="curly-underline">used</span></h2>
           <div className="mb-2 w-64">
             <svg viewBox="0 0 200 10" className="w-full">
               <path d="M0,5 Q25,0 50,5 T100,5 T150,5 T200,5" fill="none" stroke="#00ADB5" strokeWidth="2" />
@@ -103,11 +93,11 @@ const ToolsSection: React.FC = () => {
           
           {/* First row of scrolling tools */}
           <div className="overflow-hidden py-8 mb-4">
-            <div ref={skillsRowOneRef} className="flex space-x-4 w-max">
+            <div id="skills-row-one" className="flex space-x-4 w-max whitespace-nowrap">
               {[...tools, ...tools].map((tool, index) => (
                 <div 
                   key={`${tool.name}-${index}`} 
-                  className="flex items-center space-x-2 bg-gray-800 rounded-full px-6 py-3"
+                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50"
                 >
                   <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
                   <span className="text-lg">{tool.name}</span>
@@ -118,11 +108,11 @@ const ToolsSection: React.FC = () => {
           
           {/* Second row of scrolling tools */}
           <div className="overflow-hidden py-8 mb-12">
-            <div ref={skillsRowTwoRef} className="flex space-x-4 w-max">
+            <div id="skills-row-two" className="flex space-x-4 w-max whitespace-nowrap">
               {[...tools2, ...tools2].map((tool, index) => (
                 <div 
                   key={`${tool.name}-${index}`} 
-                  className="flex items-center space-x-2 bg-gray-800 rounded-full px-6 py-3"
+                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50"
                 >
                   <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
                   <span className="text-lg">{tool.name}</span>
@@ -132,7 +122,7 @@ const ToolsSection: React.FC = () => {
           </div>
           
           {/* GitHub contribution grid */}
-          <div className="mb-4">
+          <div className="mb-4 bg-gray-900/50 p-6 rounded-xl backdrop-blur-sm border border-gray-800/80">
             <div className="flex justify-between mb-2">
               {contributionData.months.map((month, index) => (
                 <span key={index} className="text-xs text-ayush-gray">{month}</span>

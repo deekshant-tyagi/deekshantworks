@@ -81,13 +81,20 @@ const Projects: React.FC = () => {
   }, []);
 
   return (
-    <section id="work" className="py-16 md:py-24" ref={sectionRef}>
+    <section id="work" className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-ayush-black" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="text-3xl font-light mb-12 opacity-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>Selected Work</h2>
+        <h2 className="text-3xl font-light mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          Selected <span className="curly-underline">Work</span>
+        </h2>
+        <div className="mb-10 w-32">
+          <svg viewBox="0 0 120 6" className="w-full">
+            <path d="M0,3 Q15,0 30,3 T60,3 T90,3 T120,3" fill="none" stroke="#00ADB5" strokeWidth="1.5" />
+          </svg>
+        </div>
         
         <div 
           ref={projectsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-0"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-0"
         >
           {projectsData.map(project => (
             <ProjectItem

@@ -27,10 +27,10 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" className="py-16 md:py-24" ref={sectionRef}>
+    <section id="about" className="py-12 md:py-16" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-8 opacity-0">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-light mb-8 text-center">About Me</h2>
+        <div className="max-w-3xl mx-auto bg-ayush-black/30 p-8 rounded-lg backdrop-blur-sm border border-gray-800">
+          <h2 className="text-3xl font-light mb-6 text-center">About <span className="curly-underline">Me</span></h2>
           <p className="text-ayush-gray mb-6 text-center md:text-left">
             Hi, I'm <span className="curly-underline">Ayush</span>, a passionate digital designer and developer with a keen eye for detail and a love for creating beautiful, functional digital experiences.
           </p>
