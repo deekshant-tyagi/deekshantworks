@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Github, Linkedin, Instagram, Twitter, MessagesSquare } from 'lucide-react';
+import { Heart, Code, Sparkles } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -13,22 +13,21 @@ const Footer: React.FC = () => {
             <p className="text-sm text-ayush-gray">© {currentYear} AYUSHWORKS. All rights reserved.</p>
           </div>
           
-          <div className="flex space-x-6">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <Github className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <Linkedin className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <Instagram className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <Twitter className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
-            </a>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-              <MessagesSquare className="w-5 h-5 text-ayush-gray hover:text-ayush-white transition-colors" />
-            </a>
+          <div className="flex flex-wrap justify-center gap-4">
+            <span className="inline-flex items-center text-sm text-ayush-gray px-3 py-1 rounded-full bg-gray-800/30 cursor-hover">
+              <Heart className="w-3 h-3 text-[#00ADB5] mr-1" />
+              <span>Made with passion</span>
+            </span>
+            
+            <span className="inline-flex items-center text-sm text-ayush-gray px-3 py-1 rounded-full bg-gray-800/30 cursor-hover">
+              <Code className="w-3 h-3 text-[#00ADB5] mr-1" />
+              <span>Clean & elegant code</span>
+            </span>
+            
+            <span className="inline-flex items-center text-sm text-ayush-gray px-3 py-1 rounded-full bg-gray-800/30 cursor-hover">
+              <Sparkles className="w-3 h-3 text-[#00ADB5] mr-1" />
+              <span>Designed to impress</span>
+            </span>
           </div>
         </div>
       </div>

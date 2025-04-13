@@ -7,59 +7,28 @@ const Cursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
   const magneticRef = useRef<HTMLDivElement>(null);
-  const { position, isHovering, isClicking } = useCursor();
+  const { position, isHovering, isClicking, isVisible } = useCursor();
   const isMobile = useIsMobile();
 
   useEffect(() => {
     if (isMobile) return;
 
-    const smoothMove = (element: HTMLElement | null, x: number, y: number, lagFactor: number) => {
+    const smoothMove = (element: HTMLElement | null, x: number, y: number) => {
       if (!element) return;
-      
       element.style.transform = `translate(${x}px, ${y}px)`;
     };
 
-    const animateCursor = () => {
-      if (dotRef.current) {
-        smoothMove(dotRef.current, position.x, position.y, 1);
-      }
-      
-      if (outlineRef.current) {
-        const rect = outlineRef.current.getBoundingClientRect();
-        const targetX = position.x;
-        const targetY = position.y;
-        
-        const dx = targetX - (rect.left + rect.width / 2);
-        const dy = targetY - (rect.top + rect.height / 2);
-        
-        const newX = (rect.left + rect.width / 2) + dx / 5;
-        const newY = (rect.top + rect.height / 2) + dy / 5;
-        
-        smoothMove(outlineRef.current, newX, newY, 5);
-      }
-      
-      if (magneticRef.current) {
-        const rect = magneticRef.current.getBoundingClientRect();
-        const targetX = position.x;
-        const targetY = position.y;
-        
-        const dx = targetX - (rect.left + rect.width / 2);
-        const dy = targetY - (rect.top + rect.height / 2);
-        
-        const newX = (rect.left + rect.width / 2) + dx / 8;
-        const newY = (rect.top + rect.height / 2) + dy / 8;
-        
-        smoothMove(magneticRef.current, newX, newY, 8);
-      }
-      
-      requestAnimationFrame(animateCursor);
-    };
+    if (dotRef.current) {
+      smoothMove(dotRef.current, position.x, position.y);
+    }
     
-    const requestId = requestAnimationFrame(animateCursor);
+    if (outlineRef.current) {
+      smoothMove(outlineRef.current, position.x, position.y);
+    }
     
-    return () => {
-      cancelAnimationFrame(requestId);
-    };
+    if (magneticRef.current) {
+      smoothMove(magneticRef.current, position.x, position.y);
+    }
   }, [position, isMobile]);
 
   if (isMobile) return null;
@@ -68,15 +37,15 @@ const Cursor: React.FC = () => {
     <>
       <div 
         ref={dotRef} 
-        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''}`}
+        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       />
       <div 
         ref={outlineRef} 
-        className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''}`}
+        className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       />
       <div 
         ref={magneticRef}
-        className="cursor-magnetic"
+        className={`cursor-magnetic transition-opacity duration-300 ${isVisible ? 'opacity-60' : 'opacity-0'}`}
       />
     </>
   );

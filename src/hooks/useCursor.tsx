@@ -10,10 +10,38 @@ export function useCursor() {
   const [position, setPosition] = useState<CursorPosition>({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let rafId: number;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
     const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      targetX = e.clientX;
+      targetY = e.clientY;
+      
+      // Check if cursor has moved into hero section
+      const heroSection = document.getElementById('hero');
+      if (heroSection && heroSection.getBoundingClientRect().top <= e.clientY) {
+        setIsVisible(true);
+      }
+    };
+
+    const render = () => {
+      // Smooth interpolation for cursor position
+      const easingFactor = 0.15;
+      currentX += (targetX - currentX) * easingFactor;
+      currentY += (targetY - currentY) * easingFactor;
+      
+      setPosition({ 
+        x: currentX, 
+        y: currentY 
+      });
+      
+      rafId = requestAnimationFrame(render);
     };
 
     const handleMouseDown = () => {
@@ -70,6 +98,8 @@ export function useCursor() {
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseover', handleMouseOver, true);
     document.addEventListener('mouseout', handleMouseOut, true);
+    
+    rafId = requestAnimationFrame(render);
 
     return () => {
       document.removeEventListener('mousemove', updatePosition);
@@ -77,8 +107,9 @@ export function useCursor() {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseover', handleMouseOver, true);
       document.removeEventListener('mouseout', handleMouseOut, true);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
-  return { position, isHovering, isClicking };
+  return { position, isHovering, isClicking, isVisible };
 }
