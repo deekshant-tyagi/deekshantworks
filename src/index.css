@@ -60,7 +60,7 @@
 }
 
 @layer components {
-  /* Enhanced Cursor Styles */
+  /* Enhanced Cursor Styles with Hover Images */
   .cursor-dot {
     width: 6px;
     height: 6px;
@@ -74,6 +74,7 @@
     box-shadow: 0 0 20px rgba(0, 173, 181, 0.9);
     mix-blend-mode: screen;
     opacity: 0;
+    will-change: transform;
   }
 
   .cursor-outline {
@@ -88,6 +89,7 @@
     transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, opacity 0.3s;
     backdrop-filter: blur(1px);
     opacity: 0;
+    will-change: transform;
   }
 
   .cursor-magnetic {
@@ -101,6 +103,51 @@
     background-color: rgba(0, 173, 181, 0.05);
     opacity: 0;
     backdrop-filter: blur(2px);
+    will-change: transform;
+  }
+  
+  .cursor-hover-image {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9996;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    filter: grayscale(30%) brightness(1.2);
+    transition: opacity 0.3s ease;
+    will-change: transform;
+  }
+  
+  .cursor-hover-image.active {
+    opacity: 0.9;
+  }
+  
+  .hover-image-project {
+    background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=180&auto=format&fit=crop');
+    width: 120px;
+    height: 80px;
+  }
+  
+  .hover-image-link {
+    background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=180&auto=format&fit=crop');
+    width: 80px;
+    height: 80px;
+  }
+  
+  .hover-image-button {
+    background-image: url('https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=180&auto=format&fit=crop');
+    width: 80px;
+    height: 80px;
+  }
+  
+  .hover-image-default {
+    background-image: url('https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=180&auto=format&fit=crop');
+    width: 80px;
+    height: 80px;
   }
 
   .cursor-visible {
@@ -242,7 +289,7 @@
   
   /* Mobile menu slide from left */
   .animate-slide-in-left {
-    animation: slideInLeft 1s ease-out forwards;
+    animation: slideInLeft 0.7s ease-out forwards;
   }
 
   .animate-slide-in-right {
@@ -298,7 +345,7 @@
     cursor: auto;
   }
   
-  .cursor-dot, .cursor-outline, .cursor-magnetic {
+  .cursor-dot, .cursor-outline, .cursor-magnetic, .cursor-hover-image {
     display: none;
   }
 }

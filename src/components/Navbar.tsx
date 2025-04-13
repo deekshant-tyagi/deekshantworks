@@ -41,8 +41,8 @@ const Navbar: React.FC = () => {
           {/* Overlay */}
           <div className="bg-black/50 absolute inset-0" onClick={() => setMobileMenuOpen(false)} />
           
-          {/* Menu Panel - now coming from left */}
-          <div className="absolute left-0 top-0 h-full w-[80%] max-w-sm bg-ayush-black transform transition-transform duration-1000 ease-in-out animate-slide-in-left">
+          {/* Menu Panel - coming from left side with proper timing */}
+          <div className="absolute left-0 top-0 h-full w-[80%] max-w-sm bg-ayush-black transform transition-transform duration-700 ease-in-out animate-slide-in-left">
             <div className="p-6 flex justify-between items-center border-b border-gray-800">
               <a href="/" className="text-xl font-bold">D</a>
               <button onClick={() => setMobileMenuOpen(false)} className="text-ayush-teal hover:text-white transition-colors" aria-label="Close mobile menu">
