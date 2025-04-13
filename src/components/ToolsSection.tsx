@@ -138,36 +138,31 @@ const ToolsSection: React.FC = () => {
     <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-ayush-black overflow-hidden">
       <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-light mb-4 py-[2px] text-left">Tools that I have <span className="wavy-underline">used</span></h2>
+          <h2 className="text-3xl font-light mb-8 py-[2px] text-center md:text-left">Tools that I have <span className="zigzag-underline">used</span></h2>
           
-          {/* First row of scrolling tools */}
-          <div className="overflow-hidden mb-0 py-0 my-0">
-            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-right">
-              {[...tools, ...tools].map((tool, index) => (
-                <div 
-                  key={`${tool.name}-${index}`} 
-                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
-                >
-                  <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
-                  <span className="text-lg">{tool.name}</span>
-                </div>
-              ))}
-            </div>
+          {/* Grid layout for tools - used on both mobile and desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 mb-8">
+            {tools.slice(0, 8).map((tool, idx) => (
+              <div 
+                key={`grid-${tool.name}-${idx}`}
+                className="bg-gray-800/50 p-4 rounded-lg border border-gray-700/30 flex items-center space-x-3 hover:border-ayush-teal/50 hover:bg-gray-800/80 transition-all duration-300"
+              >
+                <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
+                <span className="text-sm md:text-base">{tool.name}</span>
+              </div>
+            ))}
           </div>
           
-          {/* Second row of scrolling tools */}
-          <div className="overflow-hidden py-8 mb-12">
-            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-left">
-              {[...tools2, ...tools2].map((tool, index) => (
-                <div 
-                  key={`${tool.name}-${index}`} 
-                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
-                >
-                  <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
-                  <span className="text-lg">{tool.name}</span>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 mb-8">
+            {tools2.slice(0, 8).map((tool, idx) => (
+              <div 
+                key={`grid-${tool.name}-${idx}`}
+                className="bg-gray-800/50 p-4 rounded-lg border border-gray-700/30 flex items-center space-x-3 hover:border-ayush-teal/50 hover:bg-gray-800/80 transition-all duration-300"
+              >
+                <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
+                <span className="text-sm md:text-base">{tool.name}</span>
+              </div>
+            ))}
           </div>
           
           {/* GitHub contribution grid - only shown on desktop */}
@@ -204,21 +199,6 @@ const ToolsSection: React.FC = () => {
                 <div className="w-3 h-3 bg-teal-400 rounded-sm"></div>
                 <span className="text-xs text-ayush-gray">More</span>
               </div>
-            </div>
-          </div>
-          
-          {/* Mobile view - simplified tools display */}
-          <div className="md:hidden">
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              {tools.slice(0, 6).map((tool, idx) => (
-                <div 
-                  key={`mobile-${tool.name}-${idx}`}
-                  className="bg-gray-800/50 p-3 rounded-lg border border-gray-700/30 flex items-center space-x-2"
-                >
-                  <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
-                  <span className="text-sm">{tool.name}</span>
-                </div>
-              ))}
             </div>
           </div>
         </div>

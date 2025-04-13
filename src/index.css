@@ -70,9 +70,10 @@
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
+    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
     box-shadow: 0 0 20px rgba(0, 173, 181, 0.9);
     mix-blend-mode: screen;
+    opacity: 0;
   }
 
   .cursor-outline {
@@ -84,8 +85,9 @@
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: width 0.4s, height 0.4s, border-color 0.4s, background-color 0.4s;
+    transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, opacity 0.3s;
     backdrop-filter: blur(1px);
+    opacity: 0;
   }
 
   .cursor-magnetic {
@@ -97,8 +99,12 @@
     z-index: 9997;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 173, 181, 0.05);
-    opacity: 0.6;
+    opacity: 0;
     backdrop-filter: blur(2px);
+  }
+
+  .cursor-visible {
+    opacity: 0.6;
   }
 
   .cursor-dot.active {
@@ -178,8 +184,8 @@
     }
   }
   
-  /* Wavy underline */
-  .wavy-underline {
+  /* Static zigzag underline */
+  .zigzag-underline {
     position: relative;
     display: inline-block;
     white-space: nowrap;
@@ -187,7 +193,7 @@
     font-weight: 400;
   }
   
-  .wavy-underline::after {
+  .zigzag-underline::after {
     content: "";
     position: absolute;
     bottom: -5px;
@@ -196,16 +202,6 @@
     height: 4px;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4' preserveAspectRatio='none'%3E%3Cpath d='M0,3.5 C5,0.5 5,3.5 10,0.5 C15,3.5 15,0.5 20,3.5' stroke='%2300ADB5' stroke-width='2' fill='none'/%3E%3C/svg%3E") repeat-x 0 0;
     background-size: 20px 4px;
-    animation: waveMove 2s linear infinite;
-  }
-  
-  @keyframes waveMove {
-    0% {
-      background-position-x: 0;
-    }
-    100% {
-      background-position-x: 20px;
-    }
   }
   
   /* Marquee animations for skills */
@@ -244,7 +240,11 @@
     animation: slideUp 0.8s ease-out forwards;
   }
   
-  /* Mobile menu slide from right */
+  /* Mobile menu slide from left */
+  .animate-slide-in-left {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+
   .animate-slide-in-right {
     animation: slideInRight 0.3s ease-out forwards;
   }
@@ -266,6 +266,15 @@
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
   

@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import { Github, Linkedin, Instagram, Twitter, MessagesSquare, Mail, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, MessagesSquare, Mail, ArrowRight, ExternalLink, MapPin, PhoneCall } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -37,96 +37,86 @@ const Contact: React.FC = () => {
     };
   }, []);
 
+  const contactMethods = [
+    {
+      icon: <Mail className="w-6 h-6 text-[#00ADB5]" />,
+      title: "Email",
+      value: "ayushsharma.code@outlook.com",
+      link: "mailto:ayushsharma.code@outlook.com"
+    },
+    {
+      icon: <PhoneCall className="w-6 h-6 text-[#00ADB5]" />,
+      title: "Phone",
+      value: "+91 9876543210",
+      link: "tel:+919876543210"
+    },
+    {
+      icon: <MapPin className="w-6 h-6 text-[#00ADB5]" />,
+      title: "Location",
+      value: "Bengaluru, India",
+      link: "https://maps.google.com/?q=Bengaluru,India"
+    }
+  ];
+
   return (
     <section id="contact" className="py-16 md:py-24 bg-ayush-black">
       <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-light mb-4">Get in <span className="curly-underline">touch</span></h2>
-              <div className="mb-6 w-32">
-                <svg viewBox="0 0 120 6" className="w-full">
-                  <path d="M0,3 Q15,0 30,3 T60,3 T90,3 T120,3" fill="none" stroke="#00ADB5" strokeWidth="1.5" />
-                </svg>
-              </div>
-              <p className="text-ayush-gray mb-8 text-lg">
-                Interested in working with me? Feel free to reach out.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-center group cursor-hover">
-                  <Mail className="w-6 h-6 mr-4 text-[#00ADB5]" />
-                  <a 
-                    href="mailto:ayushsharma.code@outlook.com" 
-                    className="text-xl group-hover:text-ayush-white transition-all duration-300 relative overflow-hidden"
-                  >
-                    <span className="relative z-10">ayushsharma.code@outlook.com</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00ADB5] group-hover:w-full transition-all duration-300"></span>
-                  </a>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-light mb-4">Get in <span className="zigzag-underline">touch</span></h2>
+            <p className="text-ayush-gray text-lg max-w-2xl mx-auto">
+              Interested in working with me or have a project in mind? Feel free to reach out through any of the channels below.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {contactMethods.map((method, index) => (
+              <a 
+                key={index}
+                href={method.link}
+                target={method.link.startsWith('http') ? "_blank" : undefined} 
+                rel={method.link.startsWith('http') ? "noopener noreferrer" : undefined}
+                className="bg-gray-800/30 backdrop-blur-sm p-6 rounded-xl border border-gray-700/30 flex flex-col items-center transition-all hover:bg-gray-800/50 hover:border-ayush-teal/30 cursor-hover"
+              >
+                <div className="w-12 h-12 flex items-center justify-center bg-ayush-black/60 rounded-full mb-4">
+                  {method.icon}
                 </div>
-                
-                <div className="bg-gray-800/30 backdrop-blur-sm p-6 rounded-xl border border-gray-700/30">
-                  <h3 className="text-lg mb-4 flex items-center">
-                    <span className="text-[#00ADB5] mr-2">Follow me</span>
-                    <ArrowRight className="w-4 h-4 text-[#00ADB5]" />
-                  </h3>
-                  <div className="flex space-x-5">
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-3 rounded-full hover:bg-[#00ADB5]/20 transition-all duration-300">
-                      <Github className="w-5 h-5 hover:text-[#00ADB5] transition-colors" />
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-3 rounded-full hover:bg-[#00ADB5]/20 transition-all duration-300">
-                      <Linkedin className="w-5 h-5 hover:text-[#00ADB5] transition-colors" />
-                    </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-3 rounded-full hover:bg-[#00ADB5]/20 transition-all duration-300">
-                      <Instagram className="w-5 h-5 hover:text-[#00ADB5] transition-colors" />
-                    </a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-3 rounded-full hover:bg-[#00ADB5]/20 transition-all duration-300">
-                      <Twitter className="w-5 h-5 hover:text-[#00ADB5] transition-colors" />
-                    </a>
-                    <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-3 rounded-full hover:bg-[#00ADB5]/20 transition-all duration-300">
-                      <MessagesSquare className="w-5 h-5 hover:text-[#00ADB5] transition-colors" />
-                    </a>
-                  </div>
+                <h3 className="text-lg font-medium mb-2">{method.title}</h3>
+                <p className="text-ayush-gray text-center">{method.value}</p>
+                <div className="mt-3 text-ayush-teal flex items-center text-sm">
+                  <span>Connect</span>
+                  <ExternalLink className="w-3 h-3 ml-1" />
                 </div>
-              </div>
-            </div>
-            
-            <div className="bg-gray-900/40 p-8 rounded-xl backdrop-blur-sm border border-gray-800/50">
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm text-ayush-gray mb-2" htmlFor="name">Your Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    className="w-full bg-gray-800/50 border border-gray-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00ADB5]/50 transition-all"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-ayush-gray mb-2" htmlFor="email">Your Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="w-full bg-gray-800/50 border border-gray-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00ADB5]/50 transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-ayush-gray mb-2" htmlFor="message">Your Message</label>
-                  <textarea 
-                    id="message" 
-                    rows={4} 
-                    className="w-full bg-gray-800/50 border border-gray-700/50 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00ADB5]/50 transition-all"
-                    placeholder="Hello, I'd like to talk about..."
-                  ></textarea>
-                </div>
-                <button 
-                  type="button" 
-                  className="w-full bg-[#00ADB5] hover:bg-[#00ADB5]/80 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00ADB5]/50 cursor-hover"
-                >
-                  Send Message
-                </button>
-              </form>
+              </a>
+            ))}
+          </div>
+
+          <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-xl border border-gray-700/30">
+            <h3 className="text-xl mb-6 flex items-center">
+              <span className="text-[#00ADB5] mr-2">Follow me on social media</span>
+              <ArrowRight className="w-4 h-4 text-[#00ADB5]" />
+            </h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-4 rounded-xl hover:bg-[#00ADB5]/20 transition-all duration-300 flex flex-col items-center">
+                <Github className="w-8 h-8 mb-2 hover:text-[#00ADB5] transition-colors" />
+                <span className="text-sm">GitHub</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-4 rounded-xl hover:bg-[#00ADB5]/20 transition-all duration-300 flex flex-col items-center">
+                <Linkedin className="w-8 h-8 mb-2 hover:text-[#00ADB5] transition-colors" />
+                <span className="text-sm">LinkedIn</span>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-4 rounded-xl hover:bg-[#00ADB5]/20 transition-all duration-300 flex flex-col items-center">
+                <Instagram className="w-8 h-8 mb-2 hover:text-[#00ADB5] transition-colors" />
+                <span className="text-sm">Instagram</span>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-4 rounded-xl hover:bg-[#00ADB5]/20 transition-all duration-300 flex flex-col items-center">
+                <Twitter className="w-8 h-8 mb-2 hover:text-[#00ADB5] transition-colors" />
+                <span className="text-sm">Twitter</span>
+              </a>
+              <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover bg-gray-800/80 p-4 rounded-xl hover:bg-[#00ADB5]/20 transition-all duration-300 flex flex-col items-center">
+                <MessagesSquare className="w-8 h-8 mb-2 hover:text-[#00ADB5] transition-colors" />
+                <span className="text-sm">Discord</span>
+              </a>
             </div>
           </div>
           

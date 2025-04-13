@@ -27,7 +27,8 @@ const Index = () => {
     const preloadImages = () => {
       const imageUrls = [
         'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1634942537034-a3dffedcd539?q=80&w=2000&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1634942537034-a3dffedcd539?q=80&w=2000&auto=format&fit=crop',
+        '/lovable-uploads/1b938963-f509-4073-99b1-2edd19749366.png'
       ];
 
       imageUrls.forEach(url => {
