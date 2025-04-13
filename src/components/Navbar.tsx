@@ -1,13 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -16,11 +13,9 @@ const Navbar: React.FC = () => {
         setScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   return <>
       <nav className={`fixed w-full z-40 transition-all duration-300 ${scrolled ? 'py-4 bg-ayush-black/90 backdrop-blur-sm' : 'py-6 bg-transparent'}`}>
         <div className="container mx-auto md:px-8 flex justify-between items-center px-[64px]">
@@ -36,13 +31,13 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu with slide from left effect */}
+      {/* Mobile Menu with slide from right effect */}
       {mobileMenuOpen && <div className="fixed inset-0 z-50 flex">
           {/* Overlay */}
           <div className="bg-black/50 absolute inset-0" onClick={() => setMobileMenuOpen(false)} />
           
-          {/* Menu Panel - coming from left side with proper timing */}
-          <div className="absolute left-0 top-0 h-full w-[80%] max-w-sm bg-ayush-black transform transition-transform duration-700 ease-in-out animate-slide-in-left">
+          {/* Menu Panel */}
+          <div className="absolute right-0 top-0 h-full w-[80%] max-w-sm bg-ayush-black transform transition-transform duration-300 ease-in-out animate-slide-in-right">
             <div className="p-6 flex justify-between items-center border-b border-gray-800">
               <a href="/" className="text-xl font-bold">D</a>
               <button onClick={() => setMobileMenuOpen(false)} className="text-ayush-teal hover:text-white transition-colors" aria-label="Close mobile menu">
@@ -82,5 +77,4 @@ const Navbar: React.FC = () => {
         </div>}
     </>;
 };
-
 export default Navbar;

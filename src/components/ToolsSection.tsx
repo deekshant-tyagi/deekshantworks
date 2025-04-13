@@ -80,17 +80,17 @@ const ToolsSection: React.FC = () => {
   }];
   
   const tools2: Tool[] = [{
-    name: "MongoDB",
-    icon: "M",
-    color: "text-green-500"
-  }, {
-    name: "Express",
-    icon: "E",
+    name: "joDB",
+    icon: "DB",
     color: "text-white"
   }, {
-    name: "React",
-    icon: "R",
-    color: "text-blue-400"
+    name: "postgreSQL",
+    icon: "SQL",
+    color: "text-blue-500"
+  }, {
+    name: "Prisma",
+    icon: "△",
+    color: "text-teal-400"
   }, {
     name: "Node.js",
     icon: "N",
@@ -100,52 +100,17 @@ const ToolsSection: React.FC = () => {
     icon: "🔥",
     color: "text-yellow-500"
   }, {
-    name: "TypeScript",
-    icon: "TS",
-    color: "text-blue-500"
-  }, {
-    name: "PostgreSQL",
-    icon: "SQL",
-    color: "text-blue-600"
-  }, {
-    name: "Redux",
-    icon: "🔄",
-    color: "text-purple-500"
-  }];
-  
-  // DSA-specific tools
-  const dsaTools: Tool[] = [{
-    name: "Data Structures",
-    icon: "🔄",
-    color: "text-yellow-400"
-  }, {
-    name: "Algorithms",
-    icon: "⚙️",
-    color: "text-blue-400"
-  }, {
-    name: "LeetCode",
-    icon: "🧩",
-    color: "text-yellow-500"
-  }, {
-    name: "System Design",
-    icon: "🏗️",
-    color: "text-purple-500"
-  }, {
-    name: "Big O Notation",
-    icon: "Ω",
-    color: "text-red-500"
-  }, {
-    name: "Graph Theory",
-    icon: "📊",
-    color: "text-green-500"
-  }, {
-    name: "DP",
-    icon: "🧠",
+    name: "AI",
+    icon: "🤖",
     color: "text-pink-500"
   }, {
-    name: "Trees",
-    icon: "🌳",
+    name: "Nginx",
+    icon: "N",
     color: "text-green-600"
+  }, {
+    name: "Express",
+    icon: "E",
+    color: "text-white"
   }];
   
   function generateRandomContributions() {
@@ -173,42 +138,33 @@ const ToolsSection: React.FC = () => {
     <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-ayush-black overflow-hidden">
       <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-light mb-10 py-[2px] text-center md:text-left">Tools that I have <span className="zigzag-underline">used</span></h2>
+          <h2 className="text-3xl font-light mb-4 py-[2px] text-left">Tools that I have <span className="wavy-underline">used</span></h2>
           
-          {/* Moving marquee for tools */}
-          <div className="relative overflow-hidden mb-10">
-            <div className="flex mb-8 overflow-hidden whitespace-nowrap animate-marquee-right">
-              {[...tools, ...tools].map((tool, idx) => (
+          {/* First row of scrolling tools */}
+          <div className="overflow-hidden mb-0 py-0 my-0">
+            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-right">
+              {[...tools, ...tools].map((tool, index) => (
                 <div 
-                  key={`marquee-right-${tool.name}-${idx}`}
-                  className="px-6 py-3 mx-2 bg-gray-800/40 rounded-lg border border-gray-700/40 flex items-center space-x-3 hover:border-ayush-teal/50 transition-all duration-300 flex-shrink-0"
+                  key={`${tool.name}-${index}`} 
+                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
                 >
-                  <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
-                  <span>{tool.name}</span>
+                  <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
+                  <span className="text-lg">{tool.name}</span>
                 </div>
               ))}
             </div>
-            
-            <div className="flex overflow-hidden whitespace-nowrap animate-marquee-left">
-              {[...tools2, ...tools2].map((tool, idx) => (
+          </div>
+          
+          {/* Second row of scrolling tools */}
+          <div className="overflow-hidden py-8 mb-12">
+            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-left">
+              {[...tools2, ...tools2].map((tool, index) => (
                 <div 
-                  key={`marquee-left-${tool.name}-${idx}`}
-                  className="px-6 py-3 mx-2 bg-gray-800/40 rounded-lg border border-gray-700/40 flex items-center space-x-3 hover:border-ayush-teal/50 transition-all duration-300 flex-shrink-0"
+                  key={`${tool.name}-${index}`} 
+                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
                 >
-                  <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
-                  <span>{tool.name}</span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="flex mt-8 overflow-hidden whitespace-nowrap animate-marquee-right">
-              {[...dsaTools, ...dsaTools].map((tool, idx) => (
-                <div 
-                  key={`marquee-right-dsa-${tool.name}-${idx}`}
-                  className="px-6 py-3 mx-2 bg-gray-800/40 rounded-lg border border-gray-700/40 flex items-center space-x-3 hover:border-ayush-teal/50 transition-all duration-300 flex-shrink-0"
-                >
-                  <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
-                  <span>{tool.name}</span>
+                  <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
+                  <span className="text-lg">{tool.name}</span>
                 </div>
               ))}
             </div>
@@ -248,6 +204,21 @@ const ToolsSection: React.FC = () => {
                 <div className="w-3 h-3 bg-teal-400 rounded-sm"></div>
                 <span className="text-xs text-ayush-gray">More</span>
               </div>
+            </div>
+          </div>
+          
+          {/* Mobile view - simplified tools display */}
+          <div className="md:hidden">
+            <div className="grid grid-cols-2 gap-3 mt-4">
+              {tools.slice(0, 6).map((tool, idx) => (
+                <div 
+                  key={`mobile-${tool.name}-${idx}`}
+                  className="bg-gray-800/50 p-3 rounded-lg border border-gray-700/30 flex items-center space-x-2"
+                >
+                  <span className={`text-xl ${tool.color}`}>{tool.icon}</span>
+                  <span className="text-sm">{tool.name}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

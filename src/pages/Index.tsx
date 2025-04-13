@@ -27,11 +27,7 @@ const Index = () => {
     const preloadImages = () => {
       const imageUrls = [
         'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1634942537034-a3dffedcd539?q=80&w=2000&auto=format&fit=crop',
-        '/lovable-uploads/1b938963-f509-4073-99b1-2edd19749366.png',
-        'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=180&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=180&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=180&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1634942537034-a3dffedcd539?q=80&w=2000&auto=format&fit=crop'
       ];
 
       imageUrls.forEach(url => {

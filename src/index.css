@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,63 +60,71 @@
 }
 
 @layer components {
-  /* Simpler Cursor Styles */
+  /* Enhanced Cursor Styles */
   .cursor-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background-color: #00ADB5;
     border-radius: 50%;
     position: fixed;
-    top: 0;
-    left: 0;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
+    box-shadow: 0 0 20px rgba(0, 173, 181, 0.9);
     mix-blend-mode: screen;
-    opacity: 0;
   }
 
   .cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 2px solid rgba(0, 173, 181, 0.5);
+    width: 35px;
+    height: 35px;
+    border: 1.5px solid rgba(0, 173, 181, 0.7);
     border-radius: 50%;
     position: fixed;
-    top: 0;
-    left: 0;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, border-color 0.3s;
-    opacity: 0;
+    transition: width 0.4s, height 0.4s, border-color 0.4s, background-color 0.4s;
+    backdrop-filter: blur(1px);
   }
 
-  .cursor-visible {
-    opacity: 1;
+  .cursor-magnetic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 173, 181, 0.05);
+    opacity: 0.6;
+    backdrop-filter: blur(2px);
   }
 
   .cursor-dot.active {
     width: 0;
     height: 0;
-    opacity: 0;
+    background-color: transparent;
   }
 
   .cursor-outline.active {
-    width: 70px;
-    height: 70px;
-    border-color: rgba(0, 173, 181, 0.8);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 173, 181, 0.2);
+    border-color: rgba(0, 173, 181, 0.9);
   }
 
   .cursor-dot.clicking {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 173, 181, 1);
   }
 
   .cursor-outline.clicking {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     border-color: rgba(0, 173, 181, 1);
+    transform: translate(-50%, -50%) scale(0.9);
   }
 
   /* Navigation Styles */
@@ -169,8 +178,8 @@
     }
   }
   
-  /* Static zigzag underline */
-  .zigzag-underline {
+  /* Wavy underline */
+  .wavy-underline {
     position: relative;
     display: inline-block;
     white-space: nowrap;
@@ -178,15 +187,25 @@
     font-weight: 400;
   }
   
-  .zigzag-underline::after {
+  .wavy-underline::after {
     content: "";
     position: absolute;
-    bottom: -4px;
+    bottom: -5px;
     left: 0;
     width: 100%;
     height: 4px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4' preserveAspectRatio='none'%3E%3Cpath d='M0,2 C5,0 5,4 10,2 C15,0 15,4 20,2' stroke='%2300ADB5' stroke-width='2' fill='none'/%3E%3C/svg%3E") repeat-x 0 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4' preserveAspectRatio='none'%3E%3Cpath d='M0,3.5 C5,0.5 5,3.5 10,0.5 C15,3.5 15,0.5 20,3.5' stroke='%2300ADB5' stroke-width='2' fill='none'/%3E%3C/svg%3E") repeat-x 0 0;
     background-size: 20px 4px;
+    animation: waveMove 2s linear infinite;
+  }
+  
+  @keyframes waveMove {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: 20px;
+    }
   }
   
   /* Marquee animations for skills */
@@ -225,11 +244,7 @@
     animation: slideUp 0.8s ease-out forwards;
   }
   
-  /* Mobile menu slide from left */
-  .animate-slide-in-left {
-    animation: slideInLeft 0.7s ease-out forwards;
-  }
-
+  /* Mobile menu slide from right */
   .animate-slide-in-right {
     animation: slideInRight 0.3s ease-out forwards;
   }
@@ -254,15 +269,6 @@
     }
   }
   
-  @keyframes slideInLeft {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-  
   @keyframes slideInRight {
     0% {
       transform: translateX(100%);
@@ -283,7 +289,7 @@
     cursor: auto;
   }
   
-  .cursor-dot, .cursor-outline {
+  .cursor-dot, .cursor-outline, .cursor-magnetic {
     display: none;
   }
 }

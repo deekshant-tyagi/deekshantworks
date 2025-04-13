@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
       });
     };
     
-    // Reduced animation time to 0.5-1 second for faster loading
+    // Reduced animation time to 0.5-1 second
     setTimeout(() => {
       animateText(headingRef.current, 0.2);
       animateText(subheadingRef.current, 0.5);
@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
           ref={headingRef}
           className="text-3xl md:text-5xl lg:text-6xl font-light mb-6 animated-text"
         >
-          DIGITAL & <span className="zigzag-underline">VISUAL</span> DESIGNER
+          DIGITAL & <span className="curly-underline">VISUAL</span> DESIGNER
         </h1>
         <p 
           ref={subheadingRef}

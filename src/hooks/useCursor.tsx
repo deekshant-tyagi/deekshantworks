@@ -24,15 +24,21 @@ export function useCursor() {
       setIsClicking(false);
     };
 
+    // Improved hover detection
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      const hoverElements = [
+        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'
+      ];
+      
       const isHoverable = 
-        ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || 
+        hoverElements.includes(target.tagName) || 
         target.classList.contains('cursor-hover') ||
-        !!target.closest('.project-item') || 
-        !!target.closest('a') || 
-        !!target.closest('button') ||
-        !!target.closest('[role="button"]');
+        target.closest('.project-item') || 
+        target.closest('a') || 
+        target.closest('button') ||
+        target.closest('[role="button"]') ||
+        target.closest('.cursor-hover');
       
       if (isHoverable) {
         setIsHovering(true);
@@ -41,13 +47,18 @@ export function useCursor() {
 
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      const hoverElements = [
+        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'
+      ];
+      
       const isHoverable = 
-        ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || 
+        hoverElements.includes(target.tagName) || 
         target.classList.contains('cursor-hover') ||
-        !!target.closest('.project-item') || 
-        !!target.closest('a') || 
-        !!target.closest('button') ||
-        !!target.closest('[role="button"]');
+        target.closest('.project-item') || 
+        target.closest('a') || 
+        target.closest('button') ||
+        target.closest('[role="button"]') ||
+        target.closest('.cursor-hover');
       
       if (isHoverable) {
         setIsHovering(false);
