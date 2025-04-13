@@ -23,16 +23,13 @@ export function useCursor() {
       targetX = e.clientX;
       targetY = e.clientY;
       
-      // Check if cursor has moved into hero section
-      const heroSection = document.getElementById('hero');
-      if (heroSection && heroSection.getBoundingClientRect().top <= e.clientY) {
-        setIsVisible(true);
-      }
+      // Make cursor visible as soon as mouse moves
+      setIsVisible(true);
     };
 
     const render = () => {
       // Smooth interpolation for cursor position
-      const easingFactor = 0.15;
+      const easingFactor = 0.2; // Increased for smoother movement
       currentX += (targetX - currentX) * easingFactor;
       currentY += (targetY - currentY) * easingFactor;
       
@@ -99,6 +96,7 @@ export function useCursor() {
     document.addEventListener('mouseover', handleMouseOver, true);
     document.addEventListener('mouseout', handleMouseOut, true);
     
+    // Start animation immediately
     rafId = requestAnimationFrame(render);
 
     return () => {

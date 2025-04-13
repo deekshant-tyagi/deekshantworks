@@ -6,7 +6,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const Cursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
-  const magneticRef = useRef<HTMLDivElement>(null);
   const { position, isHovering, isClicking, isVisible } = useCursor();
   const isMobile = useIsMobile();
 
@@ -25,10 +24,6 @@ const Cursor: React.FC = () => {
     if (outlineRef.current) {
       smoothMove(outlineRef.current, position.x, position.y);
     }
-    
-    if (magneticRef.current) {
-      smoothMove(magneticRef.current, position.x, position.y);
-    }
   }, [position, isMobile]);
 
   if (isMobile) return null;
@@ -37,15 +32,11 @@ const Cursor: React.FC = () => {
     <>
       <div 
         ref={dotRef} 
-        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       />
       <div 
         ref={outlineRef} 
-        className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-      />
-      <div 
-        ref={magneticRef}
-        className={`cursor-magnetic transition-opacity duration-300 ${isVisible ? 'opacity-60' : 'opacity-0'}`}
+        className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       />
     </>
   );
