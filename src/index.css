@@ -59,58 +59,62 @@
 }
 
 @layer components {
-  /* Cursor Styles - Fixed Positioning */
-  .cursor-dot {
-    width: 4px;
-    height: 4px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
+  /* Custom Cursor with Dot Inside Circle */
+  .cursor-container {
     position: fixed;
     pointer-events: none;
     z-index: 10000;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, opacity 0.2s;
-    box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
+    transition: opacity 0.2s ease;
     will-change: transform;
   }
 
   .cursor-outline {
     width: 30px;
     height: 30px;
-    border: 1px solid rgba(0, 173, 181, 0.7);
+    border: 2px solid var(--accent-color);
     border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, opacity 0.2s;
-    will-change: transform;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
   }
 
-  .cursor-dot.active {
-    width: 8px;
-    height: 8px;
-    background-color: rgba(0, 173, 181, 1);
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
   }
 
-  .cursor-outline.active {
+  .cursor-container.active .cursor-outline {
     width: 44px;
     height: 44px;
     background-color: rgba(0, 173, 181, 0.1);
-    border-color: rgba(0, 173, 181, 0.9);
   }
 
-  .cursor-dot.clicking {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(0, 173, 181, 1);
+  .cursor-container.active .cursor-dot {
+    width: 8px;
+    height: 8px;
   }
 
-  .cursor-outline.clicking {
+  .cursor-container.clicking .cursor-outline {
     width: 40px;
     height: 40px;
-    border-color: rgba(0, 173, 181, 1);
+    background-color: rgba(0, 173, 181, 0.2);
     transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  .cursor-container.clicking .cursor-dot {
+    width: 10px;
+    height: 10px;
   }
 
   /* Navigation Styles */
@@ -276,7 +280,7 @@
     cursor: auto;
   }
   
-  .cursor-dot, .cursor-outline {
+  .cursor-container, .cursor-dot, .cursor-outline {
     display: none;
   }
 }
