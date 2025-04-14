@@ -12,23 +12,21 @@ const Cursor: React.FC = () => {
   useEffect(() => {
     if (isMobile) return;
 
-    const moveDot = (x: number, y: number) => {
-      if (!dotRef.current) return;
-      dotRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    // Function to update element positions
+    const updatePositions = () => {
+      if (!dotRef.current || !outlineRef.current) return;
+      
+      // Position the dot
+      dotRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
+      
+      // Position the outline with slight lag for smooth following effect
+      outlineRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
     };
     
-    const moveOutline = (x: number, y: number) => {
-      if (!outlineRef.current) return;
-      outlineRef.current.style.transform = `translate(${x}px, ${y}px)`;
-    };
-
-    // Update dot position immediately
-    moveDot(position.x, position.y);
+    // Use requestAnimationFrame for smooth animation
+    const animationId = requestAnimationFrame(updatePositions);
     
-    // Add a slight delay to the outline for a trailing effect
-    requestAnimationFrame(() => {
-      moveOutline(position.x, position.y);
-    });
+    return () => cancelAnimationFrame(animationId);
   }, [position, isMobile]);
 
   if (isMobile) return null;
