@@ -17,10 +17,10 @@ const Index = () => {
 
   const handleLoadingComplete = () => {
     setContentVisible(true);
-    // Reduced loading animation time to 0.3 second for faster loading
+    // Set to 0.8 seconds for more catchy loading experience
     setTimeout(() => {
       setLoading(false);
-    }, 300);
+    }, 800);
   };
 
   useEffect(() => {
@@ -39,8 +39,8 @@ const Index = () => {
 
     preloadImages();
     
-    // Trigger loading complete quickly
-    setTimeout(handleLoadingComplete, 300);
+    // Set loading timing to 0.8 seconds
+    setTimeout(handleLoadingComplete, 800);
   }, []);
 
   console.log("Rendering Index component - All sections should be visible");

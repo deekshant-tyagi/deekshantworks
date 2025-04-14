@@ -1,11 +1,12 @@
 
-import React, { useEffect, useRef } from 'react';
-import { Github, Linkedin, Instagram, Twitter, MessagesSquare } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Github, Linkedin, Instagram, Twitter, MessagesSquare, ChevronDown, ArrowDownCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
   const socialsRef = useRef<HTMLDivElement>(null);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
   useEffect(() => {
     const animateText = (element: HTMLElement | null, delay: number = 0) => {
@@ -31,6 +32,8 @@ const Hero: React.FC = () => {
       if (socialsRef.current) {
         socialsRef.current.classList.add('animate-fade-in');
       }
+      // Show scroll indicator after content is loaded
+      setTimeout(() => setShowScrollIndicator(true), 800);
     }, 300);
   }, []);
 
@@ -57,7 +60,7 @@ const Hero: React.FC = () => {
         
         <div 
           ref={socialsRef} 
-          className="flex justify-center space-x-8 opacity-0"
+          className="flex justify-center space-x-8 opacity-0 mb-16"
           style={{ animationDelay: '0.8s' }}
         >
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
@@ -75,6 +78,24 @@ const Hero: React.FC = () => {
           <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <MessagesSquare className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
+        </div>
+        
+        {/* Trendy scroll indicator below social links */}
+        <div className={`mt-4 transition-opacity duration-700 ease-in-out ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="flex flex-col items-center">
+            <p className="text-ayush-gray text-sm mb-4 tracking-widest">SCROLL TO EXPLORE</p>
+            <div className="relative h-20 w-6 overflow-hidden">
+              <ArrowDownCircle className="w-6 h-6 text-[#00ADB5] absolute animate-bounce" />
+            </div>
+          </div>
+          
+          <div className="mt-4 flex justify-center space-x-2">
+            <span className="inline-block h-1 w-1 rounded-full bg-[#00ADB5]/30"></span>
+            <span className="inline-block h-1 w-1 rounded-full bg-[#00ADB5]/60"></span>
+            <span className="inline-block h-1 w-1 rounded-full bg-[#00ADB5]"></span>
+            <span className="inline-block h-1 w-1 rounded-full bg-[#00ADB5]/60"></span>
+            <span className="inline-block h-1 w-1 rounded-full bg-[#00ADB5]/30"></span>
+          </div>
         </div>
       </div>
     </section>

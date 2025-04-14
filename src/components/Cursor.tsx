@@ -12,17 +12,21 @@ const Cursor: React.FC = () => {
   useEffect(() => {
     if (isMobile) return;
 
-    const smoothMove = (element: HTMLElement | null, x: number, y: number) => {
+    const smoothMove = (element: HTMLElement | null, x: number, y: number, delay: number = 0) => {
       if (!element) return;
-      element.style.transform = `translate(${x}px, ${y}px)`;
+      
+      // Add a slight delay between dot and outline for better separation
+      setTimeout(() => {
+        element.style.transform = `translate(${x}px, ${y}px)`;
+      }, delay);
     };
 
     if (dotRef.current) {
-      smoothMove(dotRef.current, position.x, position.y);
+      smoothMove(dotRef.current, position.x, position.y, 0); // No delay for dot
     }
     
     if (outlineRef.current) {
-      smoothMove(outlineRef.current, position.x, position.y);
+      smoothMove(outlineRef.current, position.x, position.y, 10); // Small delay for outline
     }
   }, [position, isMobile]);
 
