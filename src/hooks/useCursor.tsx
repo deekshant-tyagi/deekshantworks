@@ -29,7 +29,7 @@ export function useCursor() {
 
     const render = () => {
       // Smooth interpolation for cursor position
-      const easingFactor = 0.15; // Adjusted for smoother movement
+      const easingFactor = 0.2; // Increased for smoother movement
       currentX += (targetX - currentX) * easingFactor;
       currentY += (targetY - currentY) * easingFactor;
       
