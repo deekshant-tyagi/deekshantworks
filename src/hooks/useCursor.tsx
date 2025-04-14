@@ -49,11 +49,11 @@ export function useCursor() {
       setIsClicking(false);
     };
 
-    // Improved hover detection
+    // Improved hover detection with better selector coverage
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const hoverElements = [
-        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'
+        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'
       ];
       
       const isHoverable = 
@@ -63,7 +63,8 @@ export function useCursor() {
         target.closest('a') || 
         target.closest('button') ||
         target.closest('[role="button"]') ||
-        target.closest('.cursor-hover');
+        target.closest('.cursor-hover') ||
+        target.closest('.nav-link');
       
       if (isHoverable) {
         setIsHovering(true);
@@ -73,7 +74,7 @@ export function useCursor() {
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const hoverElements = [
-        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'
+        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'
       ];
       
       const isHoverable = 
@@ -83,7 +84,8 @@ export function useCursor() {
         target.closest('a') || 
         target.closest('button') ||
         target.closest('[role="button"]') ||
-        target.closest('.cursor-hover');
+        target.closest('.cursor-hover') ||
+        target.closest('.nav-link');
       
       if (isHoverable) {
         setIsHovering(false);

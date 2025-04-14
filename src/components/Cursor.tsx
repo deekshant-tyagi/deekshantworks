@@ -12,21 +12,23 @@ const Cursor: React.FC = () => {
   useEffect(() => {
     if (isMobile) return;
 
-    const smoothMove = (element: HTMLElement | null, x: number, y: number) => {
-      if (!element) return;
-      element.style.transform = `translate(${x}px, ${y}px)`;
+    const moveDot = (x: number, y: number) => {
+      if (!dotRef.current) return;
+      dotRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    };
+    
+    const moveOutline = (x: number, y: number) => {
+      if (!outlineRef.current) return;
+      outlineRef.current.style.transform = `translate(${x}px, ${y}px)`;
     };
 
-    if (dotRef.current) {
-      smoothMove(dotRef.current, position.x, position.y);
-    }
+    // Update dot position immediately
+    moveDot(position.x, position.y);
     
-    if (outlineRef.current) {
-      // Add a slight delay to the outline for a trailing effect
-      setTimeout(() => {
-        smoothMove(outlineRef.current, position.x, position.y);
-      }, 50);
-    }
+    // Add a slight delay to the outline for a trailing effect
+    requestAnimationFrame(() => {
+      moveOutline(position.x, position.y);
+    });
   }, [position, isMobile]);
 
   if (isMobile) return null;
@@ -34,12 +36,12 @@ const Cursor: React.FC = () => {
   return (
     <>
       <div 
-        ref={dotRef} 
-        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-      />
-      <div 
         ref={outlineRef} 
         className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      />
+      <div 
+        ref={dotRef} 
+        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       />
     </>
   );

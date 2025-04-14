@@ -60,18 +60,18 @@
 }
 
 @layer components {
-  /* Completely Redesigned Cursor Styles */
+  /* Redesigned Cursor Styles with Dot Inside Circle */
   .cursor-dot {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background-color: var(--accent-color);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
-    box-shadow: 0 0 10px rgba(0, 173, 181, 0.8);
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
     will-change: transform;
   }
 
@@ -82,7 +82,7 @@
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 9999;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, opacity 0.2s;
     will-change: transform;
@@ -95,8 +95,8 @@
   }
 
   .cursor-outline.active {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background-color: rgba(0, 173, 181, 0.1);
     border-color: rgba(0, 173, 181, 0.9);
   }
@@ -108,8 +108,8 @@
   }
 
   .cursor-outline.clicking {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-color: rgba(0, 173, 181, 1);
     transform: translate(-50%, -50%) scale(0.9);
   }
