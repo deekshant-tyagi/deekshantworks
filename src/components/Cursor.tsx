@@ -22,7 +22,10 @@ const Cursor: React.FC = () => {
     }
     
     if (outlineRef.current) {
-      smoothMove(outlineRef.current, position.x, position.y);
+      // Add a slight delay to the outline for a trailing effect
+      setTimeout(() => {
+        smoothMove(outlineRef.current, position.x, position.y);
+      }, 50);
     }
   }, [position, isMobile]);
 

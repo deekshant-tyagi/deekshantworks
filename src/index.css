@@ -60,57 +60,56 @@
 }
 
 @layer components {
-  /* Enhanced Cursor Styles */
+  /* Completely Redesigned Cursor Styles */
   .cursor-dot {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
     background-color: var(--accent-color);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
-    box-shadow: 0 0 20px rgba(0, 173, 181, 0.8);
+    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.8);
     will-change: transform;
   }
 
   .cursor-outline {
-    width: 36px;
-    height: 36px;
-    border: 2px solid rgba(0, 173, 181, 0.7);
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 173, 181, 0.7);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: width 0.4s, height 0.4s, border-color 0.4s, background-color 0.4s, opacity 0.3s;
-    backdrop-filter: blur(1px);
+    transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, opacity 0.2s;
     will-change: transform;
   }
 
   .cursor-dot.active {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     background-color: rgba(0, 173, 181, 1);
   }
 
   .cursor-outline.active {
-    width: 52px;
-    height: 52px;
-    background-color: rgba(0, 173, 181, 0.15);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 173, 181, 0.1);
     border-color: rgba(0, 173, 181, 0.9);
   }
 
   .cursor-dot.clicking {
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     background-color: rgba(0, 173, 181, 1);
   }
 
   .cursor-outline.clicking {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-color: rgba(0, 173, 181, 1);
     transform: translate(-50%, -50%) scale(0.9);
   }
@@ -166,7 +165,7 @@
     }
   }
   
-  /* Modern trendy underline */
+  /* Clean straight underline */
   .curly-underline {
     position: relative;
     display: inline-block;
@@ -185,8 +184,6 @@
     background-color: var(--accent-color);
     transform: scaleX(1);
     transition: transform 0.3s ease;
-    mask-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='none' stroke='%2300ADB5FF' stroke-width='4' stroke-dasharray='6, 14' stroke-dashoffset='0' stroke-linecap='square'/%3E%3C/svg%3E");
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='none' stroke='%2300ADB5FF' stroke-width='4' stroke-dasharray='6, 14' stroke-dashoffset='0' stroke-linecap='square'/%3E%3C/svg%3E");
   }
   
   /* Marquee animations for skills */
