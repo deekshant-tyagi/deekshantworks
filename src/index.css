@@ -60,18 +60,27 @@
 
 @layer components {
   /* Cursor Styles */
+  .cursor-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s;
+    will-change: transform;
+  }
+
   .cursor-dot {
     width: 4px;
     height: 4px;
     background-color: var(--accent-color);
     border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    transition: width 0.2s, height 0.2s;
     box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
-    will-change: transform;
+    z-index: 2;
   }
 
   .cursor-outline {
@@ -79,31 +88,31 @@
     height: 30px;
     border: 2px solid var(--accent-color);
     border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, opacity 0.2s, background-color 0.3s;
-    will-change: transform;
+    transition: all 0.3s ease;
+    z-index: 1;
   }
 
-  .cursor-dot.active {
+  .cursor-container.active .cursor-dot {
     width: 8px;
     height: 8px;
   }
 
-  .cursor-outline.active {
+  .cursor-container.active .cursor-outline {
     width: 44px;
     height: 44px;
     background-color: rgba(0, 173, 181, 0.1);
   }
 
-  .cursor-dot.clicking {
+  .cursor-container.clicking .cursor-dot {
     width: 6px;
     height: 6px;
   }
 
-  .cursor-outline.clicking {
+  .cursor-container.clicking .cursor-outline {
     width: 40px;
     height: 40px;
     background-color: rgba(0, 173, 181, 0.2);
