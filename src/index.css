@@ -59,13 +59,18 @@
 }
 
 @layer components {
-  /* Custom Cursor with Dot Inside Circle */
-  .cursor-container {
+  /* Cursor Styles */
+  .cursor-dot {
+    width: 4px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 10000;
     transform: translate(-50%, -50%);
-    transition: opacity 0.2s ease;
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
     will-change: transform;
   }
 
@@ -74,47 +79,34 @@
     height: 30px;
     border: 2px solid var(--accent-color);
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition: width 0.3s, height 0.3s, opacity 0.2s, background-color 0.3s;
+    will-change: transform;
   }
 
-  .cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s;
-    box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
+  .cursor-dot.active {
+    width: 8px;
+    height: 8px;
   }
 
-  .cursor-container.active .cursor-outline {
+  .cursor-outline.active {
     width: 44px;
     height: 44px;
     background-color: rgba(0, 173, 181, 0.1);
   }
 
-  .cursor-container.active .cursor-dot {
-    width: 8px;
-    height: 8px;
+  .cursor-dot.clicking {
+    width: 6px;
+    height: 6px;
   }
 
-  .cursor-container.clicking .cursor-outline {
+  .cursor-outline.clicking {
     width: 40px;
     height: 40px;
     background-color: rgba(0, 173, 181, 0.2);
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-
-  .cursor-container.clicking .cursor-dot {
-    width: 10px;
-    height: 10px;
   }
 
   /* Navigation Styles */
