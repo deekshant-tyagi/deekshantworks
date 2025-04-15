@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,34 +7,24 @@
   :root {
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
-
     --card: 0 0% 4%;
     --card-foreground: 0 0% 100%;
-
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
-
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 4%;
-
     --secondary: 0 0% 9%;
     --secondary-foreground: 0 0% 100%;
-
     --muted: 0 0% 9%;
     --muted-foreground: 0 0% 60%;
-
     --accent: 0 0% 9%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 0 0% 100%;
-
     --radius: 0.5rem;
-    
     --accent-color: #00ADB5;
   }
 }
@@ -64,8 +55,6 @@
     position: fixed;
     pointer-events: none;
     z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.2s;
     will-change: transform;
   }
 
@@ -78,7 +67,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s;
     box-shadow: 0 0 5px rgba(0, 173, 181, 0.6);
     z-index: 2;
   }
@@ -92,7 +80,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     z-index: 1;
   }
 
@@ -151,129 +139,6 @@
   .project-item:hover .project-info {
     @apply opacity-100;
   }
-
-  /* Text Animation Styles */
-  .animated-text span {
-    @apply inline-block opacity-0;
-    animation: textFadeIn 0.3s ease forwards;
-  }
-
-  @keyframes textFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Clean straight underline */
-  .curly-underline {
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
-    color: var(--accent-color);
-    font-weight: 400;
-  }
-  
-  .curly-underline::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-color);
-    transform: scaleX(1);
-    transition: transform 0.3s ease;
-  }
-  
-  /* Marquee animations for skills */
-  .animate-marquee-right {
-    animation: marqueeRight 30s linear infinite;
-  }
-  
-  .animate-marquee-left {
-    animation: marqueeLeft 30s linear infinite;
-  }
-  
-  @keyframes marqueeRight {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  
-  @keyframes marqueeLeft {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  /* Additional animations for fade-in and slide-up effects */
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.8s ease-out forwards;
-  }
-  
-  /* Mobile menu slide from left */
-  .animate-slide-in-left {
-    animation: slideInLeft 0.5s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInLeft {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  /* Glass card effect for contact */
-  .glass-card {
-    @apply backdrop-blur-lg bg-white/5 border border-white/10 shadow-lg;
-    transition: all 0.3s ease;
-  }
-  
-  .glass-card:hover {
-    @apply bg-white/10 border-[#00ADB5]/30;
-  }
-}
-
-/* Github contribution grid */
-.grid-cols-52 {
-  grid-template-columns: repeat(52, minmax(0, 1fr));
 }
 
 @media (max-width: 768px) {

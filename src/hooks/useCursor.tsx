@@ -13,101 +13,39 @@ export function useCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let rafId: number;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-
     const updatePosition = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-      
-      // Make cursor visible as soon as mouse moves
+      setPosition({
+        x: e.clientX,
+        y: e.clientY
+      });
       setIsVisible(true);
     };
 
-    const render = () => {
-      // Smooth interpolation for cursor position
-      const easingFactor = 0.15; // Adjusted for smoother movement
-      currentX += (targetX - currentX) * easingFactor;
-      currentY += (targetY - currentY) * easingFactor;
-      
-      setPosition({ 
-        x: currentX, 
-        y: currentY 
-      });
-      
-      rafId = requestAnimationFrame(render);
-    };
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
 
-    const handleMouseDown = () => {
-      setIsClicking(true);
-    };
-
-    const handleMouseUp = () => {
-      setIsClicking(false);
-    };
-
-    // Improved hover detection with better selector coverage
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const hoverElements = [
-        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'
-      ];
-      
       const isHoverable = 
-        hoverElements.includes(target.tagName) || 
+        ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'].includes(target.tagName) ||
         target.classList.contains('cursor-hover') ||
-        target.closest('.project-item') || 
-        target.closest('a') || 
-        target.closest('button') ||
-        target.closest('[role="button"]') ||
-        target.closest('.cursor-hover') ||
-        target.closest('.nav-link');
+        target.closest('.project-item, a, button, [role="button"], .cursor-hover, .nav-link');
       
-      if (isHoverable) {
-        setIsHovering(true);
-      }
-    };
-
-    const handleMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const hoverElements = [
-        'A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'
-      ];
-      
-      const isHoverable = 
-        hoverElements.includes(target.tagName) || 
-        target.classList.contains('cursor-hover') ||
-        target.closest('.project-item') || 
-        target.closest('a') || 
-        target.closest('button') ||
-        target.closest('[role="button"]') ||
-        target.closest('.cursor-hover') ||
-        target.closest('.nav-link');
-      
-      if (isHoverable) {
-        setIsHovering(false);
-      }
+      setIsHovering(!!isHoverable);
     };
 
     document.addEventListener('mousemove', updatePosition);
     document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseover', handleMouseOver, true);
-    document.addEventListener('mouseout', handleMouseOut, true);
+    document.addEventListener('mouseout', () => setIsHovering(false), true);
     
-    // Start animation immediately
-    rafId = requestAnimationFrame(render);
-
     return () => {
       document.removeEventListener('mousemove', updatePosition);
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseover', handleMouseOver, true);
-      document.removeEventListener('mouseout', handleMouseOut, true);
-      cancelAnimationFrame(rafId);
+      document.removeEventListener('mouseout', () => setIsHovering(false), true);
     };
   }, []);
 

@@ -4,36 +4,41 @@ import { useCursor } from '@/hooks/useCursor';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Cursor: React.FC = () => {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const outlineRef = useRef<HTMLDivElement>(null);
   const { position, isHovering, isClicking, isVisible } = useCursor();
   const isMobile = useIsMobile();
 
   useEffect(() => {
     if (isMobile) return;
 
-    const updatePosition = () => {
-      if (!cursorRef.current) return;
+    const updatePositions = () => {
+      if (!dotRef.current || !outlineRef.current) return;
       
-      // Apply the transform to position the cursor container
-      cursorRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
+      // Update dot position immediately
+      dotRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
+      
+      // Update outline position with smooth transition
+      outlineRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
     };
-    
-    // Use requestAnimationFrame for smooth animation
-    const animationId = requestAnimationFrame(updatePosition);
-    
+
+    const animationId = requestAnimationFrame(updatePositions);
     return () => cancelAnimationFrame(animationId);
   }, [position, isMobile]);
 
   if (isMobile) return null;
 
   return (
-    <div 
-      ref={cursorRef}
-      className={`cursor-container ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-    >
-      <div className="cursor-outline" />
-      <div className="cursor-dot" />
-    </div>
+    <>
+      <div 
+        ref={outlineRef} 
+        className={`cursor-outline ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      />
+      <div 
+        ref={dotRef} 
+        className={`cursor-dot ${isHovering ? 'active' : ''} ${isClicking ? 'clicking' : ''} ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      />
+    </>
   );
 };
 
