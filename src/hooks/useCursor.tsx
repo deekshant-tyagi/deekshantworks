@@ -26,11 +26,7 @@ export function useCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const isHoverable = 
-        ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'].includes(target.tagName) ||
-        target.classList.contains('cursor-hover') ||
-        target.closest('.project-item, a, button, [role="button"], .cursor-hover, .nav-link');
-      
+      const isHoverable = target.closest('a, button, [role="button"], input, select, textarea, .cursor-hover');
       setIsHovering(!!isHoverable);
     };
 

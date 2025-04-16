@@ -15,11 +15,9 @@ const Cursor: React.FC = () => {
     const updatePositions = () => {
       if (!dotRef.current || !outlineRef.current) return;
       
-      // Update dot position immediately
-      dotRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
-      
-      // Update outline position with smooth transition
-      outlineRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
+      // Update dot and outline positions with different transforms
+      dotRef.current.style.transform = `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`;
+      outlineRef.current.style.transform = `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`;
     };
 
     const animationId = requestAnimationFrame(updatePositions);
