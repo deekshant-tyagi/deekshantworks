@@ -115,6 +115,11 @@
     @apply w-full;
   }
 
+  /* Glass Card Styling */
+  .glass-card {
+    @apply bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 transition-all duration-300;
+  }
+
   /* Underline Effects */
   .wavy-underline {
     @apply relative text-ayush-teal;

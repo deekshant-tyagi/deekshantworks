@@ -39,14 +39,14 @@ const Contact: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-light mb-8 text-center">Get in <span className="curly-underline">touch</span></h2>
           
-          <div className="glass-card p-8 rounded-2xl mb-10">
+          <div className="glass-card p-8 rounded-2xl mb-10 bg-gray-900/20 backdrop-blur-sm border border-gray-800/50">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="w-full md:w-1/2 space-y-6">
                 <h3 className="text-2xl font-medium">Let's connect</h3>
                 <p className="text-ayush-gray">Have a project in mind or just want to chat? Feel free to reach out.</p>
                 
-                <div className="flex items-center group cursor-hover mt-4">
-                  <Mail className="w-5 h-5 mr-3 text-[#00ADB5]" />
+                <div className="flex items-center group transition-all duration-300 hover:translate-x-1">
+                  <Mail className="w-5 h-5 mr-3 text-[#00ADB5] group-hover:scale-110 transition-transform duration-300" />
                   <a 
                     href="mailto:ayushsharma.code@outlook.com" 
                     className="text-lg group-hover:text-[#00ADB5] transition-all duration-300"
@@ -62,43 +62,43 @@ const Contact: React.FC = () => {
                 <h3 className="text-2xl font-medium">On the web</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
-                    className="flex items-center p-3 glass-card rounded-xl hover:bg-[#00ADB5]/10 transition-all duration-300 group">
-                    <Github className="w-5 h-5 mr-2 group-hover:text-[#00ADB5]" />
+                    className="flex items-center p-3 bg-gray-900/30 backdrop-blur-sm border border-gray-800/30 rounded-xl hover:bg-[#00ADB5]/10 hover:border-[#00ADB5]/30 transition-all duration-300 transform hover:translate-y-[-2px] group">
+                    <Github className="w-5 h-5 mr-2 group-hover:text-[#00ADB5] transition-colors duration-300" />
                     <span>Github</span>
-                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </a>
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
-                    className="flex items-center p-3 glass-card rounded-xl hover:bg-[#00ADB5]/10 transition-all duration-300 group">
-                    <Linkedin className="w-5 h-5 mr-2 group-hover:text-[#00ADB5]" />
+                    className="flex items-center p-3 bg-gray-900/30 backdrop-blur-sm border border-gray-800/30 rounded-xl hover:bg-[#00ADB5]/10 hover:border-[#00ADB5]/30 transition-all duration-300 transform hover:translate-y-[-2px] group">
+                    <Linkedin className="w-5 h-5 mr-2 group-hover:text-[#00ADB5] transition-colors duration-300" />
                     <span>LinkedIn</span>
-                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </a>
                   <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" 
-                    className="flex items-center p-3 glass-card rounded-xl hover:bg-[#00ADB5]/10 transition-all duration-300 group">
-                    <Twitter className="w-5 h-5 mr-2 group-hover:text-[#00ADB5]" />
+                    className="flex items-center p-3 bg-gray-900/30 backdrop-blur-sm border border-gray-800/30 rounded-xl hover:bg-[#00ADB5]/10 hover:border-[#00ADB5]/30 transition-all duration-300 transform hover:translate-y-[-2px] group">
+                    <Twitter className="w-5 h-5 mr-2 group-hover:text-[#00ADB5] transition-colors duration-300" />
                     <span>Twitter</span>
-                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </a>
                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" 
-                    className="flex items-center p-3 glass-card rounded-xl hover:bg-[#00ADB5]/10 transition-all duration-300 group">
-                    <Instagram className="w-5 h-5 mr-2 group-hover:text-[#00ADB5]" />
+                    className="flex items-center p-3 bg-gray-900/30 backdrop-blur-sm border border-gray-800/30 rounded-xl hover:bg-[#00ADB5]/10 hover:border-[#00ADB5]/30 transition-all duration-300 transform hover:translate-y-[-2px] group">
+                    <Instagram className="w-5 h-5 mr-2 group-hover:text-[#00ADB5] transition-colors duration-300" />
                     <span>Instagram</span>
-                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-3 h-3 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </a>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="glass-card p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between">
+          <div className="glass-card p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between bg-gray-900/20 backdrop-blur-sm border border-gray-800/50 hover:border-[#00ADB5]/30 transition-all duration-300">
             <div>
               <h3 className="text-xl font-medium mb-1">Ready to start a project?</h3>
               <p className="text-ayush-gray">Let's discuss your ideas and make them reality</p>
             </div>
             <a href="mailto:ayushsharma.code@outlook.com" 
-              className="mt-4 md:mt-0 px-6 py-3 bg-[#00ADB5] text-white rounded-full flex items-center hover:bg-[#00ADB5]/90 transition-colors cursor-hover">
+              className="mt-4 md:mt-0 px-6 py-3 bg-[#00ADB5] text-white rounded-full flex items-center hover:bg-[#00ADB5]/90 hover:shadow-lg hover:shadow-[#00ADB5]/20 transition-all duration-300 transform hover:translate-y-[-2px] group">
               <span>Start a conversation</span>
-              <ArrowRight className="ml-2 w-4 h-4" />
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
           </div>
         </div>
