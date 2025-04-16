@@ -34,8 +34,14 @@ const Contact: React.FC = () => {
   }, []);
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-ayush-black">
-      <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
+    <section id="contact" className="py-16 md:py-24 bg-ayush-black relative overflow-hidden">
+      {/* Background highlight effect */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-ayush-teal/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-ayush-teal/10 rounded-full blur-3xl animate-pulse"></div>
+      </div>
+
+      <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 relative z-10 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-light mb-8 text-center">Get in <span className="curly-underline">touch</span></h2>
           

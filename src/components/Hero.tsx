@@ -49,13 +49,13 @@ const Hero: React.FC = () => {
           ref={headingRef}
           className="text-3xl md:text-5xl lg:text-6xl font-light mb-6 animated-text"
         >
-          DIGITAL & <span className="curly-underline">VISUAL</span> DESIGNER
+          DIGITAL & <span className="curly-underline">CREATIVE</span> DESIGNER
         </h1>
         <p 
           ref={subheadingRef}
           className="text-lg md:text-xl text-ayush-gray max-w-3xl mx-auto animated-text mb-12"
         >
-          Independent designer crafting thoughtful digital experiences — focusing on visual design, branding, and creative direction.
+          Independent designer crafting thoughtful digital experiences — focusing on visual design, branding, and creative direction for innovative solutions.
         </p>
         
         <div 
@@ -63,19 +63,19 @@ const Hero: React.FC = () => {
           className="flex justify-center space-x-8 opacity-0 transition-opacity duration-700"
           style={{ animationDelay: '0.8s' }}
         >
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+          <a href="https://github.com/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <Github className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+          <a href="https://linkedin.com/in/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <Linkedin className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+          <a href="https://instagram.com/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <Instagram className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+          <a href="https://twitter.com/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <Twitter className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
-          <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
+          <a href="https://discord.com/users/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
             <MessagesSquare className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
           </a>
         </div>
