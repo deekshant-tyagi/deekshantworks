@@ -63,6 +63,9 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			gridTemplateColumns: {
+				'52': 'repeat(52, minmax(0, 1fr))',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0' },
@@ -90,10 +93,10 @@ export default {
 				},
 				'marquee-right': {
 					'0%': { transform: 'translateX(0)' },
-					'100%': { transform: 'translateX(-50%)' }
+					'100%': { transform: 'translateX(calc(-50% - 1rem))' }
 				},
 				'marquee-left': {
-					'0%': { transform: 'translateX(-50%)' },
+					'0%': { transform: 'translateX(calc(-50% - 1rem))' },
 					'100%': { transform: 'translateX(0)' }
 				},
         'slide-in-right': {

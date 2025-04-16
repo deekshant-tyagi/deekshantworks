@@ -30,88 +30,43 @@ const ToolsSection: React.FC = () => {
     
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
-      console.log("Observer attached to ToolsSection");
     }
+    
+    // Force visibility after a timeout as fallback
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
     
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
-        console.log("Observer detached from ToolsSection");
       }
+      clearTimeout(timer);
     };
   }, []);
   
-  const tools: Tool[] = [{
-    name: "Next.js",
-    icon: "N",
-    color: "text-white"
-  }, {
-    name: "React.js",
-    icon: "⚛️",
-    color: "text-blue-400"
-  }, {
-    name: "TailwindCSS",
-    icon: "🌊",
-    color: "text-teal-400"
-  }, {
-    name: "Bootstrap",
-    icon: "B",
-    color: "text-purple-500"
-  }, {
-    name: "C++",
-    icon: "C++",
-    color: "text-blue-600"
-  }, {
-    name: "CSS",
-    icon: "CSS",
-    color: "text-blue-500"
-  }, {
-    name: "C",
-    icon: "C",
-    color: "text-teal-400"
-  }, {
-    name: "Python",
-    icon: "🐍",
-    color: "text-yellow-500"
-  }, {
-    name: "Solidity",
-    icon: "S",
-    color: "text-gray-400"
-  }];
+  const tools: Tool[] = [
+    { name: "Next.js", icon: "N", color: "text-white" },
+    { name: "React.js", icon: "⚛️", color: "text-blue-400" },
+    { name: "TailwindCSS", icon: "🌊", color: "text-teal-400" },
+    { name: "Bootstrap", icon: "B", color: "text-purple-500" },
+    { name: "C++", icon: "C++", color: "text-blue-600" },
+    { name: "CSS", icon: "CSS", color: "text-blue-500" },
+    { name: "C", icon: "C", color: "text-teal-400" },
+    { name: "Python", icon: "🐍", color: "text-yellow-500" },
+    { name: "Solidity", icon: "S", color: "text-gray-400" }
+  ];
   
-  const tools2: Tool[] = [{
-    name: "joDB",
-    icon: "DB",
-    color: "text-white"
-  }, {
-    name: "postgreSQL",
-    icon: "SQL",
-    color: "text-blue-500"
-  }, {
-    name: "Prisma",
-    icon: "△",
-    color: "text-teal-400"
-  }, {
-    name: "Node.js",
-    icon: "N",
-    color: "text-green-500"
-  }, {
-    name: "Firebase",
-    icon: "🔥",
-    color: "text-yellow-500"
-  }, {
-    name: "AI",
-    icon: "🤖",
-    color: "text-pink-500"
-  }, {
-    name: "Nginx",
-    icon: "N",
-    color: "text-green-600"
-  }, {
-    name: "Express",
-    icon: "E",
-    color: "text-white"
-  }];
+  const tools2: Tool[] = [
+    { name: "joDB", icon: "DB", color: "text-white" },
+    { name: "postgreSQL", icon: "SQL", color: "text-blue-500" },
+    { name: "Prisma", icon: "△", color: "text-teal-400" },
+    { name: "Node.js", icon: "N", color: "text-green-500" },
+    { name: "Firebase", icon: "🔥", color: "text-yellow-500" },
+    { name: "AI", icon: "🤖", color: "text-pink-500" },
+    { name: "Nginx", icon: "N", color: "text-green-600" },
+    { name: "Express", icon: "E", color: "text-white" }
+  ];
   
   function generateRandomContributions() {
     const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
@@ -135,36 +90,38 @@ const ToolsSection: React.FC = () => {
   }
 
   return (
-    <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-ayush-black overflow-hidden">
+    <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-ayush-black overflow-visible">
       <div className={`container mx-auto px-4 md:px-8 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} ref={sectionRef}>
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-light mb-4 py-[2px] text-left">Tools that I have <span className="wavy-underline">used</span></h2>
+          <h2 className="text-3xl font-light mb-8 text-left">
+            Tools that I have <span className="wavy-underline">used</span>
+          </h2>
           
           {/* First row of scrolling tools */}
-          <div className="overflow-hidden mb-0 py-0 my-0">
-            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-right">
+          <div className="overflow-visible mb-4 py-2">
+            <div className="flex flex-nowrap space-x-4 animate-marquee-right pb-2 overflow-visible">
               {[...tools, ...tools].map((tool, index) => (
                 <div 
                   key={`${tool.name}-${index}`} 
-                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
+                  className="flex-shrink-0 flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
                 >
                   <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
-                  <span className="text-lg">{tool.name}</span>
+                  <span className="text-lg whitespace-nowrap">{tool.name}</span>
                 </div>
               ))}
             </div>
           </div>
           
           {/* Second row of scrolling tools */}
-          <div className="overflow-hidden py-8 mb-12">
-            <div className="flex space-x-4 w-max whitespace-nowrap animate-marquee-left">
+          <div className="overflow-visible py-4 mb-12">
+            <div className="flex flex-nowrap space-x-4 animate-marquee-left pb-2 overflow-visible">
               {[...tools2, ...tools2].map((tool, index) => (
                 <div 
                   key={`${tool.name}-${index}`} 
-                  className="flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
+                  className="flex-shrink-0 flex items-center space-x-2 bg-gray-800/70 backdrop-blur-sm rounded-full px-6 py-3 border border-gray-700/50 hover:border-ayush-teal/50 hover:bg-gray-800/90 transition-all duration-300"
                 >
                   <span className={`text-2xl ${tool.color}`}>{tool.icon}</span>
-                  <span className="text-lg">{tool.name}</span>
+                  <span className="text-lg whitespace-nowrap">{tool.name}</span>
                 </div>
               ))}
             </div>
@@ -178,7 +135,7 @@ const ToolsSection: React.FC = () => {
               ))}
             </div>
             
-            <div className="grid grid-cols-52 gap-1">
+            <div className="grid grid-cols-[repeat(52,1fr)] gap-1">
               {contributionData.contributions.map((day, i) => (
                 <div 
                   key={i} 

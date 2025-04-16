@@ -19,17 +19,20 @@ const Hero: React.FC = () => {
       chars.forEach((char, index) => {
         const span = document.createElement('span');
         span.textContent = char;
-        span.style.animationDelay = `${delay + index * 0.03}s`;
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(20px)';
+        span.style.animation = `fadeInUp 0.5s forwards ${delay + index * 0.03}s`;
         element.appendChild(span);
       });
     };
     
-    // Reduced animation time to 0.5-1 second
+    // Reduced animation time for faster rendering
     setTimeout(() => {
       animateText(headingRef.current, 0.2);
       animateText(subheadingRef.current, 0.5);
       if (socialsRef.current) {
         socialsRef.current.classList.add('animate-fade-in');
+        socialsRef.current.style.opacity = '1';
       }
     }, 300);
   }, []);
@@ -57,7 +60,7 @@ const Hero: React.FC = () => {
         
         <div 
           ref={socialsRef} 
-          className="flex justify-center space-x-8 opacity-0"
+          className="flex justify-center space-x-8 opacity-0 transition-opacity duration-700"
           style={{ animationDelay: '0.8s' }}
         >
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="cursor-hover">
