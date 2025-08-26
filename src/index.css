@@ -198,6 +198,24 @@
     animation: fadeIn 1s forwards;
   }
 
+  /* Mobile Heading Layout Fix */
+  .mobile-heading-line {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    line-height: 1.1 !important;
+  }
+
+  .mobile-heading-line:first-child {
+    margin-bottom: 0.5rem !important;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-heading-line:first-child {
+      margin-bottom: 0.75rem !important;
+    }
+  }
+
   @keyframes fadeInUp {
     to {
       opacity: 1;

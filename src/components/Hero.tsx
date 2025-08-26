@@ -58,20 +58,22 @@ const Hero: React.FC = () => {
             MERN Stack Developer
           </span>
         </div> */}
-        <h1
-          ref={headingRef}
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 animated-text leading-tight"
-        >
-          <span className="block mb-1 sm:mb-2 bg-gradient-to-r from-white via-deekshant-teal to-white bg-clip-text text-transparent">
-            CRAFTING DIGITAL
-          </span>
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-deekshant-teal via-white to-deekshant-teal bg-clip-text text-transparent">
-              EXPERIENCES
-            </span>
-            <div className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-deekshant-teal to-transparent rounded-full opacity-60"></div>
-          </span>
-        </h1>
+        <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 text-center">
+          <div
+            ref={headingRef}
+            className="animated-text leading-tight"
+          >
+            <div className="mobile-heading-line bg-gradient-to-r from-white via-deekshant-teal to-white bg-clip-text text-transparent tracking-wider">
+              CRAFTING DIGITAL
+            </div>
+            <div className="mobile-heading-line relative">
+              <span className="bg-gradient-to-r from-deekshant-teal via-white to-deekshant-teal bg-clip-text text-transparent tracking-wider">
+                EXPERIENCES
+              </span>
+              <div className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-deekshant-teal to-transparent rounded-full opacity-60"></div>
+            </div>
+          </div>
+        </div>
 
         <p
           ref={subheadingRef}
