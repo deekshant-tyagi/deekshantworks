@@ -24,16 +24,16 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   }, [progress, onLoadingComplete]);
 
   return (
-    <div className="fixed inset-0 bg-ayush-black flex flex-col items-center justify-center z-50">
+    <div className="fixed inset-0 bg-deekshant-black flex flex-col items-center justify-center z-50">
       <div className="w-full max-w-md px-4 flex flex-col items-center">
-        <h1 className="text-3xl font-light mb-8 animate-pulse">AYUSHWORKS</h1>
-        <div className="w-full h-[2px] bg-ayush-gray/30 relative mb-3 overflow-hidden">
-          <div 
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-ayush-teal via-ayush-white to-ayush-teal transition-all duration-300 ease-out"
+        <h1 className="text-3xl font-light mb-8 animate-pulse">DEEKSHANTWORKS</h1>
+        <div className="w-full h-[2px] bg-deekshant-gray/30 relative mb-3 overflow-hidden">
+          <div
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-deekshant-teal via-deekshant-white to-deekshant-teal transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="w-full flex justify-between text-sm text-ayush-gray">
+        <div className="w-full flex justify-between text-sm text-deekshant-gray">
           <span className="animate-pulse">LOADING</span>
           <span>{progress.toFixed(0)}%</span>
         </div>

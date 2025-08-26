@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Github, Linkedin, Instagram, Twitter, MessagesSquare } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, Code, FileText, Download } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -10,12 +10,12 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const animateText = (element: HTMLElement | null, delay: number = 0) => {
       if (!element) return;
-      
+
       const text = element.textContent || '';
       element.textContent = '';
-      
+
       const chars = text.split('');
-      
+
       chars.forEach((char, index) => {
         const span = document.createElement('span');
         span.textContent = char;
@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
         element.appendChild(span);
       });
     };
-    
+
     // Reduced animation time for faster rendering
     setTimeout(() => {
       animateText(headingRef.current, 0.2);
@@ -38,45 +38,103 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center py-12 px-4 relative">
+    <section className="min-h-screen flex items-center justify-center pt-16 pb-4 px-4 sm:pt-24 sm:pb-12 relative">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute w-64 h-64 rounded-full bg-ayush-gray/5 blur-3xl -top-32 -left-32"></div>
-        <div className="absolute w-80 h-80 rounded-full bg-[#00ADB5]/10 blur-3xl top-1/2 right-0"></div>
-        <div className="absolute w-48 h-48 rounded-full bg-[#00ADB5]/5 blur-3xl bottom-20 left-20"></div>
+        <div className="absolute w-32 h-32 sm:w-64 sm:h-64 rounded-full bg-deekshant-gray/5 blur-3xl -top-16 -left-16 sm:-top-32 sm:-left-32"></div>
+        <div className="absolute w-40 h-40 sm:w-80 sm:h-80 rounded-full bg-[#00ADB5]/10 blur-3xl top-1/2 right-0"></div>
+        <div className="absolute w-24 h-24 sm:w-48 sm:h-48 rounded-full bg-[#00ADB5]/5 blur-3xl bottom-10 left-10 sm:bottom-20 sm:left-20"></div>
       </div>
-      <div className="container mx-auto text-center relative z-10">
-        <h1 
+      <div className="container mx-auto text-center relative z-10 px-4 sm:px-6">
+        {/* Available for Work Badge */}
+        <div className="mb-6 sm:mb-8 opacity-0 animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-green-500/10 to-deekshant-teal/10 border border-green-500/30 rounded-full backdrop-blur-sm">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-green-400 font-medium text-xs sm:text-sm">Available for Work</span>
+          </div>
+        </div>
+
+        {/* <div className="mb-8 opacity-0 animate-fade-in" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
+          <span className="inline-block px-4 py-2 bg-deekshant-teal/10 border border-deekshant-teal/30 rounded-full text-deekshant-teal text-sm font-semibold">
+            MERN Stack Developer
+          </span>
+        </div> */}
+        <h1
           ref={headingRef}
-          className="text-3xl md:text-5xl lg:text-6xl font-light mb-6 animated-text"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 animated-text leading-tight"
         >
-          DIGITAL & <span className="curly-underline">CREATIVE</span> DESIGNER
+          <span className="block mb-1 sm:mb-2 bg-gradient-to-r from-white via-deekshant-teal to-white bg-clip-text text-transparent">
+            CRAFTING DIGITAL
+          </span>
+          <span className="relative inline-block">
+            <span className="bg-gradient-to-r from-deekshant-teal via-white to-deekshant-teal bg-clip-text text-transparent">
+              EXPERIENCES
+            </span>
+            <div className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-deekshant-teal to-transparent rounded-full opacity-60"></div>
+          </span>
         </h1>
-        <p 
+
+        <p
           ref={subheadingRef}
-          className="text-lg md:text-xl text-ayush-gray max-w-3xl mx-auto animated-text mb-12"
+          className="text-base sm:text-lg md:text-xl text-deekshant-gray max-w-2xl sm:max-w-3xl mx-auto animated-text mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0"
         >
-          Independent designer crafting thoughtful digital experiences — focusing on visual design, branding, and creative direction for innovative solutions.
+          <span className="text-deekshant-teal font-semibold">
+            Full-Stack Developer Passionate About<br className="hidden sm:block" />
+            Building Scalable Web Applications —<br className="hidden sm:block" />
+            Expert In MERN for Modern, Responsive,<br className="hidden sm:block" />
+            and User-Centric Digital Solutions.
+          </span>
         </p>
-        
-        <div 
-          ref={socialsRef} 
-          className="flex justify-center space-x-8 opacity-0 transition-opacity duration-700"
+
+        {/* Tech Stack Pills */}
+        {/* <div className="flex flex-wrap justify-center gap-3 mb-12 opacity-0 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          <span className="px-4 py-2 bg-gray-800/50 rounded-full border border-gray-700/50 text-sm font-medium hover:border-deekshant-teal/50 transition-colors cursor-hover">MongoDB</span>
+          <span className="px-4 py-2 bg-gray-800/50 rounded-full border border-gray-700/50 text-sm font-medium hover:border-deekshant-teal/50 transition-colors cursor-hover">Express.js</span>
+          <span className="px-4 py-2 bg-gray-800/50 rounded-full border border-gray-700/50 text-sm font-medium hover:border-deekshant-teal/50 transition-colors cursor-hover">React.js</span>
+          <span className="px-4 py-2 bg-gray-800/50 rounded-full border border-gray-700/50 text-sm font-medium hover:border-deekshant-teal/50 transition-colors cursor-hover">Node.js</span>
+        </div> */}
+
+        <div
+          ref={socialsRef}
+          className="flex justify-center space-x-4 sm:space-x-6 opacity-0 transition-opacity duration-700"
           style={{ animationDelay: '0.8s' }}
         >
-          <a href="https://github.com/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <Github className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+          <a href="https://github.com/deekshant-tyagi" target="_blank" rel="noopener noreferrer" className="cursor-hover group">
+            <div className="p-2.5 sm:p-3 rounded-full border border-gray-700/50 hover:border-deekshant-teal/50 transition-all duration-300 hover:bg-deekshant-teal/10">
+              <Github className="w-5 h-5 sm:w-6 sm:h-6 text-deekshant-gray group-hover:text-deekshant-teal transition-colors" />
+            </div>
           </a>
-          <a href="https://linkedin.com/in/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <Linkedin className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+          <a href="https://leetcode.com/deekshanttyagi" target="_blank" rel="noopener noreferrer" className="cursor-hover group">
+            <div className="p-2.5 sm:p-3 rounded-full border border-gray-700/50 hover:border-deekshant-teal/50 transition-all duration-300 hover:bg-deekshant-teal/10">
+              <Code className="w-5 h-5 sm:w-6 sm:h-6 text-deekshant-gray group-hover:text-deekshant-teal transition-colors" />
+            </div>
           </a>
-          <a href="https://instagram.com/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <Instagram className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+          <a href="https://www.linkedin.com/in/deekshanttyagi" target="_blank" rel="noopener noreferrer" className="cursor-hover group">
+            <div className="p-2.5 sm:p-3 rounded-full border border-gray-700/50 hover:border-deekshant-teal/50 transition-all duration-300 hover:bg-deekshant-teal/10">
+              <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-deekshant-gray group-hover:text-deekshant-teal transition-colors" />
+            </div>
           </a>
-          <a href="https://twitter.com/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <Twitter className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+          <a href="https://instagram.com/_yashtyagiii" target="_blank" rel="noopener noreferrer" className="cursor-hover group">
+            <div className="p-2.5 sm:p-3 rounded-full border border-gray-700/50 hover:border-deekshant-teal/50 transition-all duration-300 hover:bg-deekshant-teal/10">
+              <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-deekshant-gray group-hover:text-deekshant-teal transition-colors" />
+            </div>
           </a>
-          <a href="https://discord.com/users/deekshant" target="_blank" rel="noopener noreferrer" className="cursor-hover">
-            <MessagesSquare className="w-6 h-6 text-ayush-gray hover:text-ayush-white transition-colors" />
+          <a href="https://twitter.com/_voiddotdev" target="_blank" rel="noopener noreferrer" className="cursor-hover group">
+            <div className="p-2.5 sm:p-3 rounded-full border border-gray-700/50 hover:border-deekshant-teal/50 transition-all duration-300 hover:bg-deekshant-teal/10">
+              <Twitter className="w-5 h-5 sm:w-6 sm:h-6 text-deekshant-gray group-hover:text-deekshant-teal transition-colors" />
+            </div>
+          </a>
+        </div>
+
+        <div className="mt-8 sm:mt-12 opacity-0 animate-fade-in" style={{ animationDelay: '1.0s', animationFillMode: 'forwards' }}>
+          <a
+            href="https://drive.google.com/file/d/1QuI9YRmo71Mh1bWb57r2ZbGafrv2hgYE/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-deekshant-teal to-deekshant-teal/80 rounded-full text-deekshant-black font-semibold hover:from-deekshant-teal/90 hover:to-deekshant-teal/70 transition-all duration-300 transform hover:scale-105 cursor-hover shadow-lg hover:shadow-deekshant-teal/25 text-sm sm:text-base"
+          >
+            <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span>Download Resume</span>
+            <Download className="w-3 h-3 sm:w-4 sm:h-4" />
           </a>
         </div>
       </div>

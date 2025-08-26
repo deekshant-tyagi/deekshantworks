@@ -38,7 +38,7 @@ const Index = () => {
     };
 
     preloadImages();
-    
+
     // Show loading screen for at least 0.7 seconds
     setTimeout(handleLoadingComplete, 700);
   }, []);
@@ -46,7 +46,7 @@ const Index = () => {
   console.log("Rendering Index component - All sections should be visible");
 
   return (
-    <div className="min-h-screen bg-ayush-black text-ayush-white">
+    <div className="min-h-screen bg-deekshant-black text-deekshant-white">
       {loading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
 
       <div className={`transition-opacity duration-500 ${contentVisible ? 'opacity-100' : 'opacity-0'}`}>
